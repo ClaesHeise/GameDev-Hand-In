@@ -15,7 +15,7 @@ C:/Users/catsc/OneDrive/Dokumenter/GitHub/GameDev-Hand-In/HandIn
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-58094
+59963
 Successfully changed project path to: C:/Users/catsc/OneDrive/Dokumenter/GitHub/GameDev-Hand-In/HandIn
 C:/Users/catsc/OneDrive/Dokumenter/GitHub/GameDev-Hand-In/HandIn
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,11 +47,11 @@ C:/Users/catsc/OneDrive/Dokumenter/GitHub/GameDev-Hand-In/HandIn
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [18260] Host "[IP] 172.19.224.1 [Port] 0 [Flags] 2 [Guid] 1544579604 [EditorId] 1544579604 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-B7MP8HF0) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [14544] Host "[IP] 172.19.224.1 [Port] 0 [Flags] 2 [Guid] 1374500294 [EditorId] 1374500294 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-B7MP8HF0) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [18260] Host "[IP] 172.19.224.1 [Port] 0 [Flags] 2 [Guid] 1544579604 [EditorId] 1544579604 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-B7MP8HF0) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [14544] Host "[IP] 172.19.224.1 [Port] 0 [Flags] 2 [Guid] 1374500294 [EditorId] 1374500294 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-B7MP8HF0) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 81.25 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 86.98 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.17f1 (3e8111cac19d)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.17f1/Editor/Data/Resources/UnitySubsystems
@@ -67,78 +67,78 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.17f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.17f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56684
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56164
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.17f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.17f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.005501 seconds.
+Registered in 0.005405 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 82.09 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 83.36 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.687 seconds
+- Completed reload, in  0.639 seconds
 Domain Reload Profiling:
-	ReloadAssembly (687ms)
-		BeginReloadAssembly (73ms)
+	ReloadAssembly (639ms)
+		BeginReloadAssembly (71ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (494ms)
-			LoadAssemblies (71ms)
+		EndReloadAssembly (467ms)
+			LoadAssemblies (70ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (111ms)
+			SetupTypeCache (119ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (31ms)
-			SetupLoadedEditorAssemblies (301ms)
+			RebuildScriptCaches (29ms)
+			SetupLoadedEditorAssemblies (271ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (10ms)
+				InitializePlatformSupportModulesInManaged (8ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (82ms)
+				RefreshPlugins (83ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (155ms)
-				ProcessInitializeOnLoadMethodAttributes (51ms)
+				ProcessInitializeOnLoadAttributes (130ms)
+				ProcessInitializeOnLoadMethodAttributes (48ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.007926 seconds.
+Registered in 0.007406 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\Users\catsc\OneDrive\Dokumenter\GitHub\GameDev-Hand-In\HandIn\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\Users\catsc\OneDrive\Dokumenter\GitHub\GameDev-Hand-In\HandIn\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.61 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.59 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.054 seconds
+- Completed reload, in  1.096 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1055ms)
-		BeginReloadAssembly (115ms)
+	ReloadAssembly (1097ms)
+		BeginReloadAssembly (105ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (5ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (20ms)
-		EndReloadAssembly (826ms)
-			LoadAssemblies (90ms)
+			CreateAndSetChildDomain (19ms)
+		EndReloadAssembly (885ms)
+			LoadAssemblies (84ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (275ms)
+			SetupTypeCache (285ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (51ms)
-			SetupLoadedEditorAssemblies (370ms)
+			RebuildScriptCaches (54ms)
+			SetupLoadedEditorAssemblies (407ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (6ms)
-				SetLoadedEditorAssemblies (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (86ms)
-				ProcessInitializeOnLoadAttributes (247ms)
-				ProcessInitializeOnLoadMethodAttributes (23ms)
+				BeforeProcessingInitializeOnLoad (99ms)
+				ProcessInitializeOnLoadAttributes (265ms)
+				ProcessInitializeOnLoadMethodAttributes (26ms)
 				AfterProcessingInitializeOnLoad (7ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
@@ -146,13 +146,13 @@ Domain Reload Profiling:
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 0.61 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
+Refreshing native plugins compatible for Editor in 0.70 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3376 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 27 unused Assets / (113.4 KB). Loaded Objects now: 3833.
-Memory consumption went from 115.6 MB to 115.5 MB.
-Total: 3.238900 ms (FindLiveObjects: 0.296000 ms CreateObjectMapping: 0.112700 ms MarkObjects: 2.710000 ms  DeleteObjects: 0.118700 ms)
+Unloading 27 unused Assets / (113.9 KB). Loaded Objects now: 3833.
+Memory consumption went from 115.7 MB to 115.6 MB.
+Total: 3.409400 ms (FindLiveObjects: 0.376900 ms CreateObjectMapping: 0.124500 ms MarkObjects: 2.785800 ms  DeleteObjects: 0.120300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -165,3 +165,97 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 604968.225901 seconds.
+  path: Assets/TropicalEnvironment_LITE/Textures/TropicalEnvironmentLite_Sand.png
+  artifactKey: Guid(fc7c7d8754cf5de48a02a482c9adfa86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Textures/TropicalEnvironmentLite_Sand.png using Guid(fc7c7d8754cf5de48a02a482c9adfa86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a99923e7ccb5ed390b165615f1ef3db') in 0.127628 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/TropicalEnvironment_LITE/Terrain/TerrainLayer/Sand_Lite.terrainlayer
+  artifactKey: Guid(ab2a3f1fd5b756f46a51bd8666d53529) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Terrain/TerrainLayer/Sand_Lite.terrainlayer using Guid(ab2a3f1fd5b756f46a51bd8666d53529) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a30cddc3cd8feaa814a3dc957f51c95b') in 0.058885 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 20.369789 seconds.
+  path: Assets/TropicalEnvironment_LITE/Textures/TropicalEnvironmentLite_Grass.png
+  artifactKey: Guid(89bc11f1dd883784bb12d8a71f59a54e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Textures/TropicalEnvironmentLite_Grass.png using Guid(89bc11f1dd883784bb12d8a71f59a54e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f9d532fa87ce89333d0914ff85fbfc7') in 0.016174 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/TropicalEnvironment_LITE/Textures/TropicalEnvironmentLite_Texture_01.png
+  artifactKey: Guid(f7a888e855cafde4e95acf76bec4fd87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Textures/TropicalEnvironmentLite_Texture_01.png using Guid(f7a888e855cafde4e95acf76bec4fd87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '90004403f80c67f791995908617f4441') in 0.013137 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 21.906077 seconds.
+  path: Assets/TropicalEnvironment_LITE/Prefabs/Chest_01.prefab
+  artifactKey: Guid(2269c5cfaa7f7314bba868f540b5ddad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Prefabs/Chest_01.prefab using Guid(2269c5cfaa7f7314bba868f540b5ddad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bae6f987a82f8d79745650e78b28bad5') in 0.247646 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/TropicalEnvironment_LITE/Prefabs/Plant_01.prefab
+  artifactKey: Guid(cb8023970bbd62147ba1b145685c0a02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Prefabs/Plant_01.prefab using Guid(cb8023970bbd62147ba1b145685c0a02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef099152d50e6cf842b6feb98b8172dd') in 0.021688 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/TropicalEnvironment_LITE/Prefabs/Plank_01.prefab
+  artifactKey: Guid(c95646f11c8203b438f9c638247c3121) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Prefabs/Plank_01.prefab using Guid(c95646f11c8203b438f9c638247c3121) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7e82b79b65a9be00d1f9f7bf2687719') in 0.012039 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/TropicalEnvironment_LITE/Prefabs/Rock_01.prefab
+  artifactKey: Guid(c8a2815ff94c8cf4c817008d9af097ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Prefabs/Rock_01.prefab using Guid(c8a2815ff94c8cf4c817008d9af097ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca795e38b9d29e8732ea81ce3c00c645') in 0.012536 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/TropicalEnvironment_LITE/Prefabs/PalmTree_05.prefab
+  artifactKey: Guid(3d6ee73ce0cc2f34fb0943aee27b056a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Prefabs/PalmTree_05.prefab using Guid(3d6ee73ce0cc2f34fb0943aee27b056a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58f67f25a4ebf982650062852a96f64a') in 0.011281 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/TropicalEnvironment_LITE/Prefabs/PirateSword_01.prefab
+  artifactKey: Guid(dbd2a57d08b34234fa124d3add256cf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Prefabs/PirateSword_01.prefab using Guid(dbd2a57d08b34234fa124d3add256cf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9fb92363afe198f6268b624c7052d4e2') in 0.013058 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.815984 seconds.
+  path: Assets/TropicalEnvironment_LITE/Models/Chest_01_2.fbx
+  artifactKey: Guid(2676e78c7f3295e4fafa83bedcf2c7af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Models/Chest_01_2.fbx using Guid(2676e78c7f3295e4fafa83bedcf2c7af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '546ac98053d524b13e4ee8edaf5361ce') in 0.163527 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/TropicalEnvironment_LITE/Models/Rock_01.fbx
+  artifactKey: Guid(10b9468aff5374f48b06046e1d16e6ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Models/Rock_01.fbx using Guid(10b9468aff5374f48b06046e1d16e6ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0bcc63b2d82eeb8ddd47021548e8fe23') in 0.047226 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/TropicalEnvironment_LITE/Models/Skull_01.fbx
+  artifactKey: Guid(f348a0f467f71dc49b39778f1b38e95a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Models/Skull_01.fbx using Guid(f348a0f467f71dc49b39778f1b38e95a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a04afaf100bb797bdbe246b867b77e7f') in 0.076341 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/TropicalEnvironment_LITE/Models/Tent_01.fbx
+  artifactKey: Guid(2b422041de3d9304393c67654828ce4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Models/Tent_01.fbx using Guid(2b422041de3d9304393c67654828ce4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c58b7e11848922a064dea3300129bc60') in 0.048701 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.190993 seconds.
+  path: Assets/TropicalEnvironment_LITE/Materials/TropicalEnvironmentLite_MAIN.mat
+  artifactKey: Guid(fd0f411072abac7438aba85e685bbb81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TropicalEnvironment_LITE/Materials/TropicalEnvironmentLite_MAIN.mat using Guid(fd0f411072abac7438aba85e685bbb81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4fd5ca2422974f15106f616d775aa0b') in 0.030829 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
