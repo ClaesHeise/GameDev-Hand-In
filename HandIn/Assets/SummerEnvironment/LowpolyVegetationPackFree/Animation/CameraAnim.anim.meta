@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/_DesertKits64_Sample/Materials/DesertKitsAtlas_Sample512.mat.meta
+guid: a184d6c9877bb417d822c693789adff3
+timeCreated: 1487436921
+========
 guid: 527bd7abdba4a2b4ebec33e359033734
 timeCreated: 1506619724
+>>>>>>>> main:HandIn/Assets/SummerEnvironment/LowpolyVegetationPackFree/Animation/CameraAnim.anim.meta
 licenseType: Store
 NativeFormatImporter:
   userData: 

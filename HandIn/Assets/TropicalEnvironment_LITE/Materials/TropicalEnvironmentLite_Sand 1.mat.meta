@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/BrokenVector/LowPolyBrickHouses/Materials/Foliage_1.mat.meta
+guid: f2858a7c1ccca4568b88d68564a1956d
+timeCreated: 1531659009
+licenseType: Store
+========
 guid: f36b3eaf3c342494abeff6f4f1d00752
+>>>>>>>> main:HandIn/Assets/TropicalEnvironment_LITE/Materials/TropicalEnvironmentLite_Sand 1.mat.meta
 NativeFormatImporter:
-  externalObjects: {}
   mainObjectFileID: 2100000
   userData: 
   assetBundleName: 

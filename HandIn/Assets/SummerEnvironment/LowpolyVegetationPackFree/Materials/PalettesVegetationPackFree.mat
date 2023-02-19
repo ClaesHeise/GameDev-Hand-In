@@ -4,10 +4,16 @@
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/LowPoly Environment Pack/FBX/Materials/Brown.14.mat
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Brown.14
+========
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PalettesVegetationPackFree
+>>>>>>>> main:HandIn/Assets/SummerEnvironment/LowpolyVegetationPackFree/Materials/PalettesVegetationPackFree.mat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords:
   - _EMISSION
@@ -76,6 +82,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.30319807, g: 0.12685195, b: 0.03699917, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/_DesertKits64_Sample/Prefabs/Boulder_Medium.prefab.meta
+guid: 59c5f0562accd45368b505aff662ad32
+timeCreated: 1487437572
+========
 guid: a2c8ddb5ea433104a9639539ee9c2e51
 timeCreated: 1506614768
+>>>>>>>> main:HandIn/Assets/SummerEnvironment/LowpolyVegetationPackFree/Materials/PalettesVegetationsPackBonusFree.mat.meta
 licenseType: Store
 NativeFormatImporter:
   userData: 

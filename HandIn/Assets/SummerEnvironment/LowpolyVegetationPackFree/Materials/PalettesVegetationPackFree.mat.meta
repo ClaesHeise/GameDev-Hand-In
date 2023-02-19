@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/_DesertKits64_Sample/Prefabs/Block_Cube.prefab.meta
+guid: 258b89a9f0d6b42bdab3184e37359d6a
+timeCreated: 1487437584
+========
 guid: 05244cd1770371546991e982a45ce03e
 timeCreated: 1506614779
+>>>>>>>> main:HandIn/Assets/SummerEnvironment/LowpolyVegetationPackFree/Materials/PalettesVegetationPackFree.mat.meta
 licenseType: Store
 NativeFormatImporter:
   userData: 

@@ -1,8 +1,16 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/BrokenVector/LowPolyBrickHouses/Prefabs/Church.prefab.meta
+guid: 23154293a28f74fc6ac2f18322bbb499
+timeCreated: 1531659448
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+========
 guid: 36012866382b98643b2f5a72c674e815
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 4890085278179872738
+>>>>>>>> main:HandIn/Assets/SummerEnvironment/LowpolyVegetationPackFree/Scenes/PreviewSettings.lighting.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

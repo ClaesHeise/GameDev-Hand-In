@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/BrokenVector/LowPolyBrickHouses/Materials.meta
+guid: 163995b78ca5b4852b4d9737faa37c15
+folderAsset: yes
+timeCreated: 1527784386
+========
 guid: b64c7f3835b537b48b92babf223613b4
 folderAsset: yes
 timeCreated: 1506613650
+>>>>>>>> main:HandIn/Assets/SummerEnvironment/LowpolyVegetationPackFree/Materials.meta
 licenseType: Store
 DefaultImporter:
   userData: 

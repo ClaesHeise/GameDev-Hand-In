@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/_DesertKits64_Sample/Materials/Desert_Sand_Sample256.mat.meta
+guid: d0cfa4d6f95b848ae82fb0ddf9c0088b
+timeCreated: 1487436922
+========
 guid: 5ef2daa161ee9324db04e9236e31e965
 timeCreated: 1506619729
+>>>>>>>> main:HandIn/Assets/SummerEnvironment/LowpolyVegetationPackFree/Animation/Main Camera.controller.meta
 licenseType: Store
 NativeFormatImporter:
   userData: 

@@ -1,8 +1,16 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/BrokenVector/LowPolyBrickHouses/Prefabs/Bench.prefab.meta
+guid: d1c7d950c8db14a42bcb5265626da99b
+timeCreated: 1531659250
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+========
 guid: ab3580ab775f2374780336bdf1b4aef2
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 4890085278179872738
+>>>>>>>> main:HandIn/Assets/SummerEnvironment/LowpolyVegetationPackFree/Scenes/DemoSettings.lighting.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
