@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/BrokenVector/LowPolyBrickHouses/Textures/FoliageColor2.png.meta
-guid: 6b821b5dc02bf324db0f3a88ea2a4b06
-timeCreated: 1527784291
-========
 guid: 24a7eec8fe4e963429e04e0811981a60
 timeCreated: 1506614801
->>>>>>>> main:HandIn/Assets/SummerEnvironment/LowpolyVegetationPackFree/Textures/PalettesVegetationsPackBonusFree.psd.meta
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}

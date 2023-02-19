@@ -1,21 +1,4 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/LowPoly Environment Pack/FBX/Bush_2.fbx.meta
-guid: 87ad1332cfca6934ea307ce26bfc9dec
-timeCreated: 1504768175
-licenseType: Store
-ModelImporter:
-  serializedVersion: 21
-  fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Bush_2
-  materials:
-    importMaterials: 1
-    materialName: 0
-    materialSearch: 1
-========
 guid: 2676e78c7f3295e4fafa83bedcf2c7af
 ModelImporter:
   serializedVersion: 20200
@@ -26,7 +9,6 @@ ModelImporter:
     materialName: 0
     materialSearch: 1
     materialLocation: 1
->>>>>>>> main:HandIn/Assets/TropicalEnvironment_LITE/Models/Chest_01_2.fbx.meta
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -39,6 +21,8 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -49,16 +33,6 @@ ModelImporter:
     clipAnimations: []
     isReadable: 0
   meshes:
-<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/LowPoly Environment Pack/FBX/Bush_2.fbx.meta
-    lODScreenPercentages: []
-    globalScale: 1
-    meshCompression: 0
-    addColliders: 0
-    importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
-========
     lODScreenPercentages:
     - 0.25
     - 0.01
@@ -72,14 +46,10 @@ ModelImporter:
     importCameras: 0
     importLights: 0
     fileIdsGeneration: 2
->>>>>>>> main:HandIn/Assets/TropicalEnvironment_LITE/Models/Chest_01_2.fbx.meta
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
-<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/LowPoly Environment Pack/FBX/Bush_2.fbx.meta
-    weldVertices: 1
-========
     weldVertices: 0
     bakeAxisConversion: 0
     preserveHierarchy: 0
@@ -88,7 +58,6 @@ ModelImporter:
     minBoneWeight: 0.001
     meshOptimizationFlags: -1
     indexFormat: 0
->>>>>>>> main:HandIn/Assets/TropicalEnvironment_LITE/Models/Chest_01_2.fbx.meta
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -102,16 +71,11 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/LowPoly Environment Pack/FBX/Bush_2.fbx.meta
-  importAnimation: 1
-  copyAvatar: 0
-========
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 0
->>>>>>>> main:HandIn/Assets/TropicalEnvironment_LITE/Models/Chest_01_2.fbx.meta
   humanDescription:
     serializedVersion: 3
     human: []
