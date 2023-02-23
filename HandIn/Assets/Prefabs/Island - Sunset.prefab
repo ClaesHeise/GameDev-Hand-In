@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2255260559181885104}
   - component: {fileID: 2626373206060405841}
   - component: {fileID: 8626916661561777942}
+  - component: {fileID: 81663272092904509}
   m_Layer: 0
   m_Name: Terrain_0_0_e415d7c1-9910-499c-b4db-403f018f4daa
   m_TagString: Untagged
@@ -78,6 +79,20 @@ TerrainCollider:
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: bb58773e7024d6f43981ec00f803238b, type: 2}
   m_EnableTreeColliders: 1
+--- !u!64 &81663272092904509
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298697801362164098}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &7508035244903994366
 GameObject:
   m_ObjectHideFlags: 0
