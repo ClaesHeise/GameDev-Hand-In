@@ -37,21 +37,14 @@ public class MenuManagerController : MonoBehaviour
   void Update()
   {
     // Check if the game is paused
-    if (GM.gameState == GameState.PAUSED)
+    if (Input.GetKeyDown(KeyCode.Escape))
     {
-      // Show the pause menu
-      // Hide all other menus
-      if (Input.GetKeyDown(KeyCode.Escape))
+      if (GM.gameState == GameState.PAUSED)
       {
         GM.SetGameState(GameState.GAME);
         Time.timeScale = 1;
       }
-    }
-    else if (GM.gameState == GameState.GAME)
-    {
-      // Hide the pause menu
-      // Hide all other menus
-      if (Input.GetKeyDown(KeyCode.Escape))
+      else if (GM.gameState == GameState.GAME)
       {
         GM.SetGameState(GameState.PAUSED);
         Time.timeScale = 0;
