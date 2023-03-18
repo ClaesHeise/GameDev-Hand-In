@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets.meta
+guid: cf519c01a26a942c4abf03818fdf3987
+========
 guid: 3abf834f5489cfe4f81b302883ee8993
+>>>>>>>> main:HandIn/Assets/SummerEnvironment.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

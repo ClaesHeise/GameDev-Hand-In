@@ -4,10 +4,16 @@
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/LowPoly Environment Pack/FBX/Materials/Brown.11.mat
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Brown.11
+========
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Illumin
+>>>>>>>> main:HandIn/Assets/SummerEnvironment/Park/Materials/Illumin.mat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords:
   - _EMISSION
@@ -76,6 +82,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+<<<<<<<< HEAD:HandIn/Assets/ThirdPartyAssets/LowPoly Environment Pack/FBX/Materials/Brown.11.mat
+    - _Color: {r: 0.2352941, g: 0.15686272, b: 0.027681658, a: 1}
+========
     - _Color: {r: 0.36764705, g: 0.36764705, b: 0.36764705, a: 1}
+>>>>>>>> main:HandIn/Assets/SummerEnvironment/Park/Materials/Illumin.mat
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
