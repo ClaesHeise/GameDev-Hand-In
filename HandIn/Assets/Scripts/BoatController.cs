@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(FloatObject))]
+[RequireComponent(typeof(Floater))]
 public class BoatController : MonoBehaviour
 {
   public Vector3 COM;
