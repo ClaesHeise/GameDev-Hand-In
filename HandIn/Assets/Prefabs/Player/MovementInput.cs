@@ -114,6 +114,98 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Ship_Move"",
+            ""id"": ""1059cfe7-b321-4da2-89b4-ad34396009a6"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement "",
+                    ""type"": ""Value"",
+                    ""id"": ""b26c521d-1dd3-414d-8134-3bae9f6376dd"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotation"",
+                    ""type"": ""Button"",
+                    ""id"": ""6836f3f8-4d99-45f3-9e02-b016de927750"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Vertical"",
+                    ""id"": ""3cea481c-696a-4646-b3d2-54128be7a19d"",
+                    ""path"": ""1DAxis(minValue=-0.5)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement "",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""2ce7a75e-9825-4fd2-a4b6-86574b44b131"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement "",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""de56824b-90cb-457b-91aa-e56efe73c4f9"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement "",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Horizontal"",
+                    ""id"": ""d28b327b-4e17-4b55-bfeb-989ba3f23a13"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""432fdaad-6dd5-44d9-92cf-4bd9a07c4cee"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""375f1c9a-e868-4053-aad0-80e568870b24"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -122,6 +214,10 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
         m_Player_Move = asset.FindActionMap("Player_Move", throwIfNotFound: true);
         m_Player_Move_Movement = m_Player_Move.FindAction("Movement", throwIfNotFound: true);
         m_Player_Move_Rotate = m_Player_Move.FindAction("Rotate", throwIfNotFound: true);
+        // Ship_Move
+        m_Ship_Move = asset.FindActionMap("Ship_Move", throwIfNotFound: true);
+        m_Ship_Move_Movement = m_Ship_Move.FindAction("Movement ", throwIfNotFound: true);
+        m_Ship_Move_Rotation = m_Ship_Move.FindAction("Rotation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,9 +314,55 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
         }
     }
     public Player_MoveActions @Player_Move => new Player_MoveActions(this);
+
+    // Ship_Move
+    private readonly InputActionMap m_Ship_Move;
+    private IShip_MoveActions m_Ship_MoveActionsCallbackInterface;
+    private readonly InputAction m_Ship_Move_Movement;
+    private readonly InputAction m_Ship_Move_Rotation;
+    public struct Ship_MoveActions
+    {
+        private @MovementInput m_Wrapper;
+        public Ship_MoveActions(@MovementInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Ship_Move_Movement;
+        public InputAction @Rotation => m_Wrapper.m_Ship_Move_Rotation;
+        public InputActionMap Get() { return m_Wrapper.m_Ship_Move; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Ship_MoveActions set) { return set.Get(); }
+        public void SetCallbacks(IShip_MoveActions instance)
+        {
+            if (m_Wrapper.m_Ship_MoveActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnMovement;
+                @Rotation.started -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnRotation;
+                @Rotation.performed -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnRotation;
+                @Rotation.canceled -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnRotation;
+            }
+            m_Wrapper.m_Ship_MoveActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Rotation.started += instance.OnRotation;
+                @Rotation.performed += instance.OnRotation;
+                @Rotation.canceled += instance.OnRotation;
+            }
+        }
+    }
+    public Ship_MoveActions @Ship_Move => new Ship_MoveActions(this);
     public interface IPlayer_MoveActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+    }
+    public interface IShip_MoveActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+        void OnRotation(InputAction.CallbackContext context);
     }
 }
