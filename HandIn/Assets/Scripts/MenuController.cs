@@ -113,7 +113,7 @@ public class MenuController : MonoBehaviour
 
     public void VolumeApply()
     {
-        PlayerPrefs.SetFloat("mastervolume", AudioListener.volume);
+        PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
         // Show Prompt
         StartCoroutine(ConfirmationBox());
     }
