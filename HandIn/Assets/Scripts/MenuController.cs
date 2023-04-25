@@ -26,6 +26,10 @@ public class MenuController : MonoBehaviour
     [SerializeField] private TMP_Text brightnessTextValue = null;
     [SerializeField] private float defaultBrightnessValue = 1f;
 
+    [Space(10)]
+    [SerializeField] private TMP_Dropdown qualityDropdown;
+    [SerializeField] private Toggle fullScreenToggle;
+
     private int _qualityLevel;
     private bool _isFullScreen;
     private float _brightnessLevel;
@@ -169,6 +173,24 @@ public class MenuController : MonoBehaviour
 
     public void ResetButton(string MenuType)
     {
+        if(MenuType == "Graphics")
+        {
+            // Reset the brightness (here we have to add the actual functionality, which isn't implemented yet)
+            brightnessSlider.value = defaultBrightnessValue;
+            brightnessTextValue.text = defaultBrightnessValue.ToString("0.0");
+
+            qualityDropdown.value = 1;
+            QualitySettings.SetQualityLevel(1);
+
+            fullScreenToggle.isOn = false;
+            Screen.fullScreen = false;
+
+            Resolution currentResolution = Screen.currentResolution;
+            Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen);
+            resolutionDropdown.value = resolutions.Length; // last resolution in the list
+            GraphicsApply();
+        }
+
         if(MenuType == "Audio") 
         {
             AudioListener.volume = defaultVolume;
