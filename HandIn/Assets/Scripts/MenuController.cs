@@ -21,6 +21,15 @@ public class MenuController : MonoBehaviour
     [Header("Toggle Settings")]
     [SerializeField] private Toggle invertYToggle = null;
 
+    [Header("Graphics Settings")]
+    [SerializeField] private Slider brightnessSlider = null;
+    [SerializeField] private TMP_Text brightnessTextValue = null;
+    [SerializeField] private float defaultBrightnessValue = 1f;
+
+    private int _qualityLevel;
+    private bool _isFullScreen;
+    private float _brightnessLevel;
+
     [Header("Confirmation")]
     [SerializeField] private GameObject confirmationPrompt = null;
 
@@ -28,6 +37,45 @@ public class MenuController : MonoBehaviour
     public string _newGameLevel;
     private string levelToLoad;
     [SerializeField] private GameObject noSavedGameDialog = null;
+
+    [Header("Resolutions Dropdowns")]
+    public TMP_Dropdown resolutionDropdown;
+    private Resolution[] resolutions;
+
+    private void Start()
+    {
+        // Get all resolutions
+        resolutions = Screen.resolutions;
+        // Clear the list
+        resolutionDropdown.ClearOptions();
+        // Create a list
+        List<string> options = new List<string>();
+
+        int currentResolutionIndex = 0;
+        for (int i = 0; i < resolutions.Length; i++)
+        {   
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+            // Check to see if the resolution we found is equal to our screen width and height
+            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            {
+                // Set to our current res
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue(); 
+
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
 
     public void NewGameDialogYes() 
     {
@@ -85,6 +133,37 @@ public class MenuController : MonoBehaviour
             // ! do the inverting here
         }
         PlayerPrefs.SetFloat("masterSens", mainControllerSens);
+        StartCoroutine(ConfirmationBox());
+    }
+
+    // setter methods that sets the variables that we can apply later in the GraphicsApply
+    public void SetBrightness(float brightness)
+    {
+        _brightnessLevel = brightness;
+        brightnessTextValue.text = brightness.ToString("0.0");
+    }    
+
+    public void SetFullScreen(bool isFullScreen)
+    {
+        _isFullScreen = isFullScreen;
+    }
+
+    public void SetQuality(int qualityIndex)
+    {
+        _qualityLevel = qualityIndex;
+    }
+
+    public void GraphicsApply()
+    {
+        PlayerPrefs.SetFloat("masterBrightness", _brightnessLevel);
+        // Here we can change brightness with post processing or whatever else it might be - not implemented yet
+
+        PlayerPrefs.SetInt("masterQuality", _qualityLevel);
+        QualitySettings.SetQualityLevel(_qualityLevel);
+
+        PlayerPrefs.SetInt("masterFullscreen", (_isFullScreen ? 1 : 0));
+        Screen.fullScreen = _isFullScreen;
+
         StartCoroutine(ConfirmationBox());
     }
 
