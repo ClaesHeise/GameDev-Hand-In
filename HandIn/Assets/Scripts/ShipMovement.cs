@@ -31,7 +31,6 @@ public class ShipMovement : MonoBehaviour
   private float shipRotate;
 
   public event Action OnShipMove;
-  public event Action OnShipDock;
 
   private MovementInput moveInp;
   private Rigidbody rb;

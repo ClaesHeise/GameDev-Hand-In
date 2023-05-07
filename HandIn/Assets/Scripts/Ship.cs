@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class Ship : MonoBehaviour
 
   private ShipMovement shipMovement;
 
+  public event Action OnShipDock;
+
 
 
   // Start is called before the first frame update
@@ -20,7 +23,7 @@ public class Ship : MonoBehaviour
   {
 
     shipMovement = GetComponent<ShipMovement>();
-    shipMovement.OnShipDock += PlayDockSound;
+    OnShipDock += PlayDockSound;
     shipMovement.OnShipMove += PlaySailingSound;
   }
 
@@ -42,6 +45,13 @@ public class Ship : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+
+  }
+
+  public void Dock()
+  {
+    OnShipDock.Invoke();
+    shipMovement.
 
   }
 }
