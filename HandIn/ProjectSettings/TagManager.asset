@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Map
+  - PickUp
+  - Plank
+  - Chest
+  - Door
+  - Bonfire
+  - Sizeify
   layers:
   - Default
   - TransparentFX

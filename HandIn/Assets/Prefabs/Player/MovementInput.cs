@@ -44,6 +44,15 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""73ebeea8-5b46-4e67-a31f-fe3b55863508"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,17 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0436726-4bbd-4659-a777-15ffa9b721e8"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -206,6 +226,96 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Interaction"",
+            ""id"": ""54b1c63d-45c7-4acf-93e2-5c371f7d2d7d"",
+            ""actions"": [
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""93ed4341-4d13-440b-96e6-94daa5572f78"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""c1c744bf-1fe0-4d00-a445-0ba8fc11e6dd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Height"",
+                    ""type"": ""Value"",
+                    ""id"": ""4b1dd661-8918-4182-bdeb-9833fb944873"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1d9ef490-50d1-4282-90ef-59140edad5f5"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d280477f-72ac-483a-8560-8b622ffd6403"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""UI Keys"",
+                    ""id"": ""bee095ff-66d4-4fe4-a067-41a28436e80c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Height"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""1c8cb75a-31c1-4972-a29a-988e4f6767f8"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Height"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""877c6b33-7ac2-40ea-8a17-06d388335ba3"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Height"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -214,10 +324,16 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
         m_Player_Move = asset.FindActionMap("Player_Move", throwIfNotFound: true);
         m_Player_Move_Movement = m_Player_Move.FindAction("Movement", throwIfNotFound: true);
         m_Player_Move_Rotate = m_Player_Move.FindAction("Rotate", throwIfNotFound: true);
+        m_Player_Move_Jump = m_Player_Move.FindAction("Jump", throwIfNotFound: true);
         // Ship_Move
         m_Ship_Move = asset.FindActionMap("Ship_Move", throwIfNotFound: true);
         m_Ship_Move_Movement = m_Ship_Move.FindAction("Movement ", throwIfNotFound: true);
         m_Ship_Move_Rotation = m_Ship_Move.FindAction("Rotation", throwIfNotFound: true);
+        // Interaction
+        m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
+        m_Interaction_Use = m_Interaction.FindAction("Use", throwIfNotFound: true);
+        m_Interaction_Drop = m_Interaction.FindAction("Drop", throwIfNotFound: true);
+        m_Interaction_Height = m_Interaction.FindAction("Height", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -279,12 +395,14 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
     private IPlayer_MoveActions m_Player_MoveActionsCallbackInterface;
     private readonly InputAction m_Player_Move_Movement;
     private readonly InputAction m_Player_Move_Rotate;
+    private readonly InputAction m_Player_Move_Jump;
     public struct Player_MoveActions
     {
         private @MovementInput m_Wrapper;
         public Player_MoveActions(@MovementInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Move_Movement;
         public InputAction @Rotate => m_Wrapper.m_Player_Move_Rotate;
+        public InputAction @Jump => m_Wrapper.m_Player_Move_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Player_Move; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,6 +418,9 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                 @Rotate.started -= m_Wrapper.m_Player_MoveActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_Player_MoveActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_Player_MoveActionsCallbackInterface.OnRotate;
+                @Jump.started -= m_Wrapper.m_Player_MoveActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_Player_MoveActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_Player_MoveActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_Player_MoveActionsCallbackInterface = instance;
             if (instance != null)
@@ -310,6 +431,9 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -355,14 +479,70 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
         }
     }
     public Ship_MoveActions @Ship_Move => new Ship_MoveActions(this);
+
+    // Interaction
+    private readonly InputActionMap m_Interaction;
+    private IInteractionActions m_InteractionActionsCallbackInterface;
+    private readonly InputAction m_Interaction_Use;
+    private readonly InputAction m_Interaction_Drop;
+    private readonly InputAction m_Interaction_Height;
+    public struct InteractionActions
+    {
+        private @MovementInput m_Wrapper;
+        public InteractionActions(@MovementInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Use => m_Wrapper.m_Interaction_Use;
+        public InputAction @Drop => m_Wrapper.m_Interaction_Drop;
+        public InputAction @Height => m_Wrapper.m_Interaction_Height;
+        public InputActionMap Get() { return m_Wrapper.m_Interaction; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InteractionActions set) { return set.Get(); }
+        public void SetCallbacks(IInteractionActions instance)
+        {
+            if (m_Wrapper.m_InteractionActionsCallbackInterface != null)
+            {
+                @Use.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnUse;
+                @Use.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnUse;
+                @Use.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnUse;
+                @Drop.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnDrop;
+                @Drop.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnDrop;
+                @Drop.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnDrop;
+                @Height.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnHeight;
+                @Height.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnHeight;
+                @Height.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnHeight;
+            }
+            m_Wrapper.m_InteractionActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Use.started += instance.OnUse;
+                @Use.performed += instance.OnUse;
+                @Use.canceled += instance.OnUse;
+                @Drop.started += instance.OnDrop;
+                @Drop.performed += instance.OnDrop;
+                @Drop.canceled += instance.OnDrop;
+                @Height.started += instance.OnHeight;
+                @Height.performed += instance.OnHeight;
+                @Height.canceled += instance.OnHeight;
+            }
+        }
+    }
+    public InteractionActions @Interaction => new InteractionActions(this);
     public interface IPlayer_MoveActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
     public interface IShip_MoveActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
+    }
+    public interface IInteractionActions
+    {
+        void OnUse(InputAction.CallbackContext context);
+        void OnDrop(InputAction.CallbackContext context);
+        void OnHeight(InputAction.CallbackContext context);
     }
 }
