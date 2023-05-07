@@ -206,6 +206,116 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Orbit_Camera"",
+            ""id"": ""31d58d55-ebc9-463c-94c5-17ed107a35fc"",
+            ""actions"": [
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""a7a6d1ef-261b-48f6-a4ea-eeaf8e68758e"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Adjust"",
+                    ""type"": ""Button"",
+                    ""id"": ""736646cc-e7af-4d96-b886-623cc5287ce8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate Horizontal"",
+                    ""type"": ""Value"",
+                    ""id"": ""b832a347-4f95-4fc0-ab63-a8914e20b09c"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotate Vertical"",
+                    ""type"": ""Value"",
+                    ""id"": ""63892b80-884c-4e11-b9cc-bd8681c989ca"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""f357aa7e-8723-493a-9624-be9dbca11a9e"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""044794e7-5a17-4637-8fb4-b04b406b5e46"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""881b6b2e-b939-40cb-819a-cdcaf3f03037"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a1a46ac-e813-48aa-bb85-533041bb2fcf"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Adjust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa4f37b0-7593-4bbe-873d-1a2b466228a1"",
+                    ""path"": ""<Pointer>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Horizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a586d08f-7e45-4df1-b675-e132352efdb3"",
+                    ""path"": ""<Pointer>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Vertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -218,6 +328,12 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
         m_Ship_Move = asset.FindActionMap("Ship_Move", throwIfNotFound: true);
         m_Ship_Move_Movement = m_Ship_Move.FindAction("Movement ", throwIfNotFound: true);
         m_Ship_Move_Rotation = m_Ship_Move.FindAction("Rotation", throwIfNotFound: true);
+        // Orbit_Camera
+        m_Orbit_Camera = asset.FindActionMap("Orbit_Camera", throwIfNotFound: true);
+        m_Orbit_Camera_Zoom = m_Orbit_Camera.FindAction("Zoom", throwIfNotFound: true);
+        m_Orbit_Camera_Adjust = m_Orbit_Camera.FindAction("Adjust", throwIfNotFound: true);
+        m_Orbit_Camera_RotateHorizontal = m_Orbit_Camera.FindAction("Rotate Horizontal", throwIfNotFound: true);
+        m_Orbit_Camera_RotateVertical = m_Orbit_Camera.FindAction("Rotate Vertical", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -355,6 +471,63 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
         }
     }
     public Ship_MoveActions @Ship_Move => new Ship_MoveActions(this);
+
+    // Orbit_Camera
+    private readonly InputActionMap m_Orbit_Camera;
+    private IOrbit_CameraActions m_Orbit_CameraActionsCallbackInterface;
+    private readonly InputAction m_Orbit_Camera_Zoom;
+    private readonly InputAction m_Orbit_Camera_Adjust;
+    private readonly InputAction m_Orbit_Camera_RotateHorizontal;
+    private readonly InputAction m_Orbit_Camera_RotateVertical;
+    public struct Orbit_CameraActions
+    {
+        private @MovementInput m_Wrapper;
+        public Orbit_CameraActions(@MovementInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Zoom => m_Wrapper.m_Orbit_Camera_Zoom;
+        public InputAction @Adjust => m_Wrapper.m_Orbit_Camera_Adjust;
+        public InputAction @RotateHorizontal => m_Wrapper.m_Orbit_Camera_RotateHorizontal;
+        public InputAction @RotateVertical => m_Wrapper.m_Orbit_Camera_RotateVertical;
+        public InputActionMap Get() { return m_Wrapper.m_Orbit_Camera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Orbit_CameraActions set) { return set.Get(); }
+        public void SetCallbacks(IOrbit_CameraActions instance)
+        {
+            if (m_Wrapper.m_Orbit_CameraActionsCallbackInterface != null)
+            {
+                @Zoom.started -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnZoom;
+                @Adjust.started -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnAdjust;
+                @Adjust.performed -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnAdjust;
+                @Adjust.canceled -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnAdjust;
+                @RotateHorizontal.started -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnRotateHorizontal;
+                @RotateHorizontal.performed -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnRotateHorizontal;
+                @RotateHorizontal.canceled -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnRotateHorizontal;
+                @RotateVertical.started -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnRotateVertical;
+                @RotateVertical.performed -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnRotateVertical;
+                @RotateVertical.canceled -= m_Wrapper.m_Orbit_CameraActionsCallbackInterface.OnRotateVertical;
+            }
+            m_Wrapper.m_Orbit_CameraActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
+                @Adjust.started += instance.OnAdjust;
+                @Adjust.performed += instance.OnAdjust;
+                @Adjust.canceled += instance.OnAdjust;
+                @RotateHorizontal.started += instance.OnRotateHorizontal;
+                @RotateHorizontal.performed += instance.OnRotateHorizontal;
+                @RotateHorizontal.canceled += instance.OnRotateHorizontal;
+                @RotateVertical.started += instance.OnRotateVertical;
+                @RotateVertical.performed += instance.OnRotateVertical;
+                @RotateVertical.canceled += instance.OnRotateVertical;
+            }
+        }
+    }
+    public Orbit_CameraActions @Orbit_Camera => new Orbit_CameraActions(this);
     public interface IPlayer_MoveActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -364,5 +537,12 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
+    }
+    public interface IOrbit_CameraActions
+    {
+        void OnZoom(InputAction.CallbackContext context);
+        void OnAdjust(InputAction.CallbackContext context);
+        void OnRotateHorizontal(InputAction.CallbackContext context);
+        void OnRotateVertical(InputAction.CallbackContext context);
     }
 }

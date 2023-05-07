@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +7,31 @@ using UnityEngine.InputSystem;
 public class ShipMovement : MonoBehaviour
 {
 
-  public float speed = 10f;
-  public float rotationSpeed = 2;
 
-  public float smootherRotation = 0.2f;
-  public float smootherMovement = 0.2f;
+  [SerializeField]
+  private float speedMultiplier = 5f;
 
+  [SerializeField]
+  private float rotationSpeed = 2;
+
+  [SerializeField]
+  private float maxSpeed = 100f;
+
+  [SerializeField]
+  private float smootherRotation = 0.2f;
+
+  [SerializeField]
+  private float smootherMovement = 0.2f;
+
+  [SerializeField]
+  private float maxBackwardSpeed = 10f;
+
+  private float speed { get; set; }
   private float shipMove;
   private float shipRotate;
+
+  public event Action OnShipMove;
+  public event Action OnShipDock;
 
   private MovementInput moveInp;
   private Rigidbody rb;
@@ -26,7 +44,6 @@ public class ShipMovement : MonoBehaviour
 
     moveInp.Player_Move.Disable();
     moveInp.Ship_Move.Enable();
-    Debug.Log("Ship Movement Enabled");
   }
   void Start()
   {
@@ -38,22 +55,27 @@ public class ShipMovement : MonoBehaviour
     Move();
     Rotate();
   }
-
   void Move()
   {
-    Vector3 movement = transform.forward * shipMove * speed * Time.deltaTime;
-    rb.AddForce(movement, ForceMode.VelocityChange);
-    if (!moveInp.Ship_Move.Movement.IsPressed())
-      shipMove -= shipMove * smootherMovement * Time.deltaTime;
+    if (moveInp.Ship_Move.Movement.IsPressed())
+      speed += shipMove * smootherMovement * speedMultiplier;
+
+    speed = Mathf.Clamp(speed, -maxBackwardSpeed, maxSpeed);
+
+    if (!(speed < 0.1f && speed > -0.1f))
+      OnShipMove?.Invoke();
+
+    Vector3 movement = transform.forward * speed;
+    if (rb.velocity.magnitude < maxSpeed || rb.velocity.magnitude > -maxBackwardSpeed)
+      rb.AddForce(movement);
   }
 
   void Rotate()
   {
-    Debug.Log("Rotating" + shipRotate);
-    rb.AddTorque(transform.up * shipRotate * rotationSpeed * Time.deltaTime, ForceMode.Impulse);
     if (!moveInp.Ship_Move.Rotation.IsPressed())
-      shipRotate -= shipRotate * smootherRotation * Time.deltaTime;
+      shipRotate -= shipRotate * smootherRotation;
 
+    rb.AddTorque(transform.up * shipRotate * rotationSpeed);
   }
 
   void OnEnable()
