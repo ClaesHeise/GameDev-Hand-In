@@ -39,7 +39,7 @@ public class OrbitCamera : MonoBehaviour
     moveInp.Orbit_Camera.RotateVertical.performed += rotating => input.x = rotating.ReadValue<float>();
     moveInp.Orbit_Camera.Zoom.performed += zooming => distance = Mathf.Clamp(distance - (zooming.ReadValue<float>() * zoomSensitivity), 30f, 100f);
     focusPoint = focus.position;
-    transform.localRotation = Quaternion.Euler(orbitAngles);
+    // transform.localRotation = Quaternion.Euler(orbitAngles);
     OnEnable();
   }
 

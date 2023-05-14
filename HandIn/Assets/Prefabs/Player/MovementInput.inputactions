@@ -134,15 +134,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Dock",
-                    "type": "Button",
-                    "id": "9ba05178-d427-4a9f-980e-bf22b620cc79",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -211,17 +202,6 @@
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "57f1c5ea-179a-4331-82f5-cd4acf829b23",
-                    "path": "<Keyboard>/e",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dock",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },

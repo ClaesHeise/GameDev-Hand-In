@@ -6,78 +6,48 @@ using UnityEngine.InputSystem;
 public class DockShip : MonoBehaviour
 {
   [SerializeField]
-  private Vector3 dockPosition;
-  private MovementInput controls;
+  private Transform dockPosition;
+
+  [SerializeField]
+  private Transform playerDropOff;
 
   private MeshRenderer meshRenderer;
-
-
-  private void Awake()
-  {
-    controls = new MovementInput();
-  }
 
   private void Start()
   {
     meshRenderer = GetComponent<MeshRenderer>();
+    meshRenderer.enabled = false;
   }
   private void OnTriggerEnter(Collider other)
   {
-    if (other.gameObject.tag == "Ship")
+    if (other.CompareTag("Ship"))
     {
       meshRenderer.enabled = true;
+      var ship = other.gameObject.GetComponent<Ship>();
+      ship.dockPosition = dockPosition;
+      ship.playerDropOff = playerDropOff;
+
     }
   }
 
   private void OnTriggerStay(Collider other)
   {
-    if (other.gameObject.tag == "Ship" && controls.Ship_Move.Dock.triggered)
+    if (other.CompareTag("Ship") && other.gameObject.GetComponent<Ship>().dockPosition == null)
     {
-      Dock(other.gameObject.GetComponent<Ship>());
+      var ship = other.gameObject.GetComponent<Ship>();
+      ship.dockPosition = dockPosition;
+      ship.playerDropOff = playerDropOff;
     }
-
   }
 
   private void OnTriggerExit(Collider other)
   {
-    if (other.gameObject.tag == "Ship")
+    if (other.CompareTag("Ship"))
     {
       meshRenderer.enabled = false;
+      var ship = other.gameObject.GetComponent<Ship>();
+      ship.dockPosition = null;
+      ship.playerDropOff = null;
     }
-  }
-
-  private void Dock(Ship ship)
-  {
-    Debug.Log("Docking");
-    controls.Ship_Move.Disable();
-
-    ship.transform.rotation = Quaternion.Euler(0, 0, 0);
-    var coroutine = StartCoroutine(Move(ship.transform, ship.transform.position, dockPosition, 5f));
-
-    ship.Dock();
-
-    controls.Player_Move.Enable();
-  }
-
-  IEnumerator Move(Transform ship, Vector3 beginPos, Vector3 endPos, float duration)
-  {
-    float t = 0f;
-    while (t < duration)
-    {
-      t += Time.deltaTime;
-      ship.position = Vector3.Lerp(beginPos, endPos, t / duration);
-      yield return null;
-    }
-    ship.position = endPos;
-  }
-
-  private void OnEnable()
-  {
-    controls.Ship_Move.Enable();
-  }
-
-  private void OnDisable()
-  {
-    controls.Ship_Move.Disable();
   }
 }

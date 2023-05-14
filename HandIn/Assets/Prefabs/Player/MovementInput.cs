@@ -156,15 +156,6 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Dock"",
-                    ""type"": ""Button"",
-                    ""id"": ""9ba05178-d427-4a9f-980e-bf22b620cc79"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -233,17 +224,6 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                     ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""57f1c5ea-179a-4331-82f5-cd4acf829b23"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dock"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -459,7 +439,6 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
         m_Ship_Move = asset.FindActionMap("Ship_Move", throwIfNotFound: true);
         m_Ship_Move_Movement = m_Ship_Move.FindAction("Movement ", throwIfNotFound: true);
         m_Ship_Move_Rotation = m_Ship_Move.FindAction("Rotation", throwIfNotFound: true);
-        m_Ship_Move_Dock = m_Ship_Move.FindAction("Dock", throwIfNotFound: true);
         // Orbit_Camera
         m_Orbit_Camera = asset.FindActionMap("Orbit_Camera", throwIfNotFound: true);
         m_Orbit_Camera_Zoom = m_Orbit_Camera.FindAction("Zoom", throwIfNotFound: true);
@@ -581,14 +560,12 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
     private IShip_MoveActions m_Ship_MoveActionsCallbackInterface;
     private readonly InputAction m_Ship_Move_Movement;
     private readonly InputAction m_Ship_Move_Rotation;
-    private readonly InputAction m_Ship_Move_Dock;
     public struct Ship_MoveActions
     {
         private @MovementInput m_Wrapper;
         public Ship_MoveActions(@MovementInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Ship_Move_Movement;
         public InputAction @Rotation => m_Wrapper.m_Ship_Move_Rotation;
-        public InputAction @Dock => m_Wrapper.m_Ship_Move_Dock;
         public InputActionMap Get() { return m_Wrapper.m_Ship_Move; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -604,9 +581,6 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                 @Rotation.started -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnRotation;
                 @Rotation.performed -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnRotation;
                 @Rotation.canceled -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnRotation;
-                @Dock.started -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnDock;
-                @Dock.performed -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnDock;
-                @Dock.canceled -= m_Wrapper.m_Ship_MoveActionsCallbackInterface.OnDock;
             }
             m_Wrapper.m_Ship_MoveActionsCallbackInterface = instance;
             if (instance != null)
@@ -617,9 +591,6 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
-                @Dock.started += instance.OnDock;
-                @Dock.performed += instance.OnDock;
-                @Dock.canceled += instance.OnDock;
             }
         }
     }
@@ -681,6 +652,7 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
         }
     }
     public Orbit_CameraActions @Orbit_Camera => new Orbit_CameraActions(this);
+
     // Interaction
     private readonly InputActionMap m_Interaction;
     private IInteractionActions m_InteractionActionsCallbackInterface;
@@ -739,7 +711,6 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
-        void OnDock(InputAction.CallbackContext context);
     }
     public interface IOrbit_CameraActions
     {
