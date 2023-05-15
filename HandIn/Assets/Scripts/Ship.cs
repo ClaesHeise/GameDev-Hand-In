@@ -77,7 +77,6 @@ public class Ship : MonoBehaviour
 
     if (!isDocked)
     {
-      Debug.Log("docking");
       Dock();
     }
   }
@@ -103,7 +102,7 @@ public class Ship : MonoBehaviour
     Player.SetActive(true);
     Camera.main.GetComponent<SwitchCameraTarget>().SwitchTarget(Player, Vector3.up * playerHeight / 2);
     Camera.main.GetComponent<OrbitCamera>().enabled = false;
-    controls.Interaction.Use.performed += null;
+    controls.Interaction.Use.performed += ctx => { };
   }
 
   public void Undock()
@@ -120,7 +119,6 @@ public class Ship : MonoBehaviour
     controls.Interaction.Drop.Disable();
     controls.Interaction.Use.performed += ctx => Interaction();
     Player.SetActive(false);
-    Debug.Log("undocking");
   }
 
   IEnumerator Move(Transform beginPos, Transform endPos, float duration)

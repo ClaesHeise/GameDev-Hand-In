@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class DockShip : MonoBehaviour
 {
   [SerializeField]
@@ -16,7 +17,8 @@ public class DockShip : MonoBehaviour
   private void Start()
   {
     meshRenderer = GetComponent<MeshRenderer>();
-    meshRenderer.enabled = false;
+    if (meshRenderer != null)
+      meshRenderer.enabled = false;
   }
   private void OnTriggerEnter(Collider other)
   {
