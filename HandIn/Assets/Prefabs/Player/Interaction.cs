@@ -98,7 +98,7 @@ public class Interaction : MonoBehaviour
       }
       else if (hit.collider.tag == "Ship")
       {
-        textElement2.text = "Bord ship";
+        textElement2.text = "Board ship";
         HitObject = hit.transform.gameObject;
       }
     }
