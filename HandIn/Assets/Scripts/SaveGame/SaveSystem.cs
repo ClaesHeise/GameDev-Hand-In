@@ -19,6 +19,7 @@ public static class SaveSystem
 
     public static PlayerData LoadPlayer()
     {
+        Debug.Log("Loading game...");
         string path = Application.persistentDataPath + "/player.gamedev";
         if (File.Exists(path))
         {
@@ -32,7 +33,7 @@ public static class SaveSystem
         }
         else 
         {
-            Debug.LogError("The save was not found at " + path);
+            Debug.LogError("No saved game found at " + path);
             return null;
         }
     }

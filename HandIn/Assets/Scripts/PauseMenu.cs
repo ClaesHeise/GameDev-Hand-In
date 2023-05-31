@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool Paused = false;
     public GameObject pauseMenuUI;
+    public Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -46,8 +47,12 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        Debug.Log("Loading menu...");
+        Debug.Log("Saving game and Loading menu...");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        // Save the game
+        SaveSystem.SavePlayer(player);
+
         Time.timeScale = 1f; // Unfreeze the game
         SceneManager.LoadScene("MainMenu");
     }
