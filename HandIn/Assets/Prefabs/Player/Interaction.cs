@@ -1,93 +1,113 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
-    private GameObject PickUp;
-    GameObject HitObject;
-    bool hasItem;
-    bool isSmall;
-    bool hitPlank;
-    Vector3 normalScale;
-    Vector3 smallScale;
-    [SerializeField]
-    private GameObject hiddenChest;
+  private GameObject PickUp;
+  GameObject HitObject;
 
-    public Text textElement;
-    public Text textElement2;
+  SwitchCameraTarget CameraSwitcher;
+  bool hasItem;
+  bool isSmall;
+  bool hitPlank;
+  Vector3 normalScale;
+  Vector3 smallScale;
+  [SerializeField]
+  private GameObject hiddenChest;
 
-    private int keys = 0;
-    int bonfires = 0;
-    bool key;
+  public Text textElement;
+  public Text textElement2;
 
-    private MovementInput moveInp;
+  private int keys = 0;
+  int bonfires = 0;
+  bool key;
 
-    void Awake()
+  private MovementInput moveInp;
+
+  void Awake()
+  {
+    moveInp = new MovementInput();
+  }
+
+  // Start is called before the first frame update
+  void Start()
+  {
+    hasItem = false;
+    isSmall = false;
+    hitPlank = false;
+    key = false;
+    textElement.text = "No keys";
+    textElement2.text = "";
+    normalScale = gameObject.transform.localScale;
+    smallScale = normalScale * 0.2f;
+    CameraSwitcher = GetComponent<SwitchCameraTarget>();
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+    var keyboard = Keyboard.current;
+    if (keyboard == null)
     {
-        moveInp = new MovementInput();
+      return;
     }
-
-    // Start is called before the first frame update
-    void Start()
+    Vector3 fwd = transform.TransformDirection(Vector3.forward);
+    RaycastHit hit;
+    if (Physics.Raycast(transform.position, fwd, out hit, 5f))
     {
-        hasItem = false;
-        isSmall = false;
-        hitPlank = false;
-        key = false;
-        textElement.text = "No keys";
-        textElement2.text = "";
-        normalScale = gameObject.transform.localScale;
-        smallScale = normalScale * 0.2f;
+      if (hit.collider.tag == "PickUp" || hit.collider.tag == "Sizeify" && hasItem == false && PickUp == null)
+      {
+        // print("hittin an object");
+        if (hit.collider.tag == "PickUp")
+        {
+          textElement2.text = "e) Pick up";
+        }
+        else
+        {
+          textElement2.text = "e) Sizeify";
+        }
+        HitObject = hit.transform.gameObject;
+      }
+      else if (hit.collider.tag == "Chest")
+      {
+        textElement2.text = "e) Loot chest";
+        HitObject = hit.transform.gameObject;
+      }
+      else if (hit.collider.tag == "Door")
+      {
+        if (key)
+        {
+          textElement2.text = "Open door";
+        }
+        else
+        {
+          textElement2.text = "You don't have the key for the door";
+        }
+        HitObject = hit.transform.gameObject;
+      }
+      else if (hit.collider.tag == "Bonfire")
+      {
+        if (hit.collider.GetComponentsInChildren<ParticleSystem>()[0].isPlaying == false)
+        {
+          textElement2.text = "Light fire";
+          HitObject = hit.transform.gameObject;
+        }
+      }
+      else if (hit.collider.tag == "Ship")
+      {
+        textElement2.text = "Board ship";
+        HitObject = hit.transform.gameObject;
+      }
     }
-
-    // Update is called once per frame
-    void Update()
+    else if (HitObject != null && PickUp == null && hitPlank == false)
     {
-        var keyboard = Keyboard.current;
-        if(keyboard == null){
-            return;
-        }
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, fwd, out hit, 1.5f)){
-            if(hit.collider.tag == "PickUp" || hit.collider.tag == "Sizeify" && hasItem == false && PickUp == null){
-                // print("hittin an object");
-                if(hit.collider.tag == "PickUp"){
-                    textElement2.text = "e) Pick up";
-                }
-                else{
-                    textElement2.text = "e) Sizeify";
-                }
-                HitObject = hit.transform.gameObject;
-            }
-            else if(hit.collider.tag == "Chest"){
-                textElement2.text = "e) Loot chest";
-                HitObject = hit.transform.gameObject;
-            }
-            else if(hit.collider.tag == "Door"){
-                if(key){
-                    textElement2.text = "Open door";
-                }
-                else {
-                    textElement2.text = "You don't have the key for the door";
-                }
-                HitObject = hit.transform.gameObject;
-            }
-            else if(hit.collider.tag == "Bonfire"){
-                if(hit.collider.GetComponentsInChildren<ParticleSystem>()[0].isPlaying == false){
-                    textElement2.text = "Light fire";
-                    HitObject = hit.transform.gameObject;
-                }
-            }
-        }
-        else if (HitObject != null && PickUp == null && hitPlank == false){
-            HitObject = null;
-            textElement2.text = "";
-            return;
-        }
+      HitObject = null;
+      textElement2.text = "";
+      return;
+    }
 
         if(moveInp.Interaction.Use.triggered && HitObject != null && PickUp == null){
             InteractionE();
@@ -111,29 +131,33 @@ public class Interaction : MonoBehaviour
             // }
         }
 
-    }
+  }
 
-        private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.tag == "Plank" ){
-            hitPlank = true;
-            print(other.gameObject.tag);
-            textElement2.text = "e) Pick up";
-            HitObject = other.gameObject;
+  private void OnCollisionEnter(Collision other)
+  {
+    if (other.gameObject.tag == "Plank")
+    {
+      hitPlank = true;
+      print(other.gameObject.tag);
+      textElement2.text = "e) Pick up";
+      HitObject = other.gameObject;
 
-            // if(other.contacts.Length > 0){
-            // ContactPoint contact = other.contacts[0];
-            // if(Vector3.Dot(contact.normal, Vector3.up) > 0.5){
-            //     isGrounded = true;
-            // }
-        }
-        // else{isGrounded = false;}    
+      // if(other.contacts.Length > 0){
+      // ContactPoint contact = other.contacts[0];
+      // if(Vector3.Dot(contact.normal, Vector3.up) > 0.5){
+      //     isGrounded = true;
+      // }
     }
+    // else{isGrounded = false;}    
+  }
 
-    private void OnCollisionExit(Collision other) {
-                if(other.gameObject.tag == "Plank" ){
-            hitPlank = false;
-        }
+  private void OnCollisionExit(Collision other)
+  {
+    if (other.gameObject.tag == "Plank")
+    {
+      hitPlank = false;
     }
+  }
 
     private void InteractionE() {
         if(HitObject.tag == "PickUp" || HitObject.tag == "Plank"){
@@ -151,40 +175,51 @@ public class Interaction : MonoBehaviour
                     // MoveBehaviour.walkSpeed *= 5f;
                     // MoveBehaviour.sprintSpeed *= 5f;
 
-                }
-                else {
-                    gameObject.transform.localScale = normalScale;
-                    // Add decreased movement speed, probably
-                    // MoveBehaviour.walkSpeed *= 0.2f;
-                    // MoveBehaviour.sprintSpeed *= 0.2f;
-                }
-            }
-            else if(HitObject.tag == "Chest"){
-                keys++;
-                // keys = 3;
-                if(keys > 2){
-                    key = true;
-                    textElement.text = "1 key";
-                }
-                else {
-                    textElement.text = keys+" Key fragments";
-                }
-                HitObject.SetActive(false);
-            }
-            else if(HitObject.tag == "Door" && key == true){
-                HitObject.SetActive(false);
-                key = false;
-                keys = 0;
-                textElement.text = keys+" Key fragments";
-            }
-            else if(HitObject.tag == "Bonfire"){
-                HitObject.GetComponentsInChildren<ParticleSystem>()[0].Play();
-                bonfires++;
-                if(bonfires > 2){
-                    hiddenChest.SetActive(true);
-                }
-            }
+      }
+      else
+      {
+        gameObject.transform.localScale = normalScale;
+        // Add decreased movement speed, probably
+        // MoveBehaviour.walkSpeed *= 0.2f;
+        // MoveBehaviour.sprintSpeed *= 0.2f;
+      }
     }
+    else if (HitObject.tag == "Chest")
+    {
+      keys++;
+      // keys = 3;
+      if (keys > 2)
+      {
+        key = true;
+        textElement.text = "1 key";
+      }
+      else
+      {
+        textElement.text = keys + " Key fragments";
+      }
+      HitObject.SetActive(false);
+    }
+    else if (HitObject.tag == "Door" && key == true)
+    {
+      HitObject.SetActive(false);
+      key = false;
+      keys = 0;
+      textElement.text = keys + " Key fragments";
+    }
+    else if (HitObject.tag == "Bonfire")
+    {
+      HitObject.GetComponentsInChildren<ParticleSystem>()[0].Play();
+      bonfires++;
+      if (bonfires > 2)
+      {
+        hiddenChest.SetActive(true);
+      }
+    }
+    else if (HitObject.tag == "Ship")
+    {
+      HitObject.GetComponent<Ship>().Undock();
+    }
+  }
 
     private void InteractionQ() {
         PickUp.GetComponent<BoxCollider>().isTrigger = false;
@@ -199,11 +234,13 @@ public class Interaction : MonoBehaviour
         print("Hey5");
     }
 
-        void OnEnable() {
-        moveInp.Interaction.Enable();
-    }
+  void OnEnable()
+  {
+    moveInp.Interaction.Enable();
+  }
 
-    void OnDisable() {
-        moveInp.Interaction.Disable();
-    }
+  void OnDisable()
+  {
+    moveInp.Interaction.Disable();
+  }
 }
