@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(this);
+        //SaveSystem.SavePlayer(this);
     }
 
     public void LoadPlayer()

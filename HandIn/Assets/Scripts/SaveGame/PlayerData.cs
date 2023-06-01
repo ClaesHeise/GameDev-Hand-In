@@ -7,7 +7,7 @@ public class PlayerData
 {
     public float[] position;
 
-    public PlayerData(Player player)
+    public PlayerData(GameObject player)
     {
         position = new float[3];
         position[0] = player.transform.position.x;

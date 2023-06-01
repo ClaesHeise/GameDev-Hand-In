@@ -83,6 +83,10 @@ public class MenuController : MonoBehaviour
 
     public void NewGameDialogYes() 
     {
+        Debug.Log("New Game");
+        PlayerPrefs.DeleteKey("playerX");
+        PlayerPrefs.DeleteKey("playerY");
+        PlayerPrefs.DeleteKey("playerZ");
         SceneManager.LoadScene(_newGameLevel);
     }
 
@@ -100,6 +104,13 @@ public class MenuController : MonoBehaviour
             {
                 // load the game with player data
                 //SceneManager.LoadScene(data.level);
+                Debug.Log("Loading game...!!!");
+                // set x, y, z for player in playerprefs
+                PlayerPrefs.SetFloat("playerX", data.position[0]);
+                PlayerPrefs.SetFloat("playerY", data.position[1]);
+                PlayerPrefs.SetFloat("playerZ", data.position[2]);
+                PlayerPrefs.Save();
+                SceneManager.LoadScene("SampleScene");
             }
     }
 
