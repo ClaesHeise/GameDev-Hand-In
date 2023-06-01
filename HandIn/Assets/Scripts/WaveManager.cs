@@ -39,6 +39,7 @@ public class WaveManager : MonoBehaviour
     float distance = Vector3.Distance(position, waveOriginPosition);
     distance = (distance % waveLength) / waveLength;
     return waveHeight * Mathf.Sin(Time.time * Mathf.PI * 2.0f * waveFrequency
-            + (Mathf.PI * 2.0f * distance));
+            + (Mathf.PI * 2.0f * distance)) + Mathf.Sin(Time.time * Mathf.PI * 4.0f * waveFrequency
+            + (Mathf.PI * 1.5f * distance));
   }
 }
