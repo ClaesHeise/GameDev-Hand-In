@@ -15,9 +15,13 @@ public class Jump : MonoBehaviour
 
     private MovementInput moveInp;
 
+    Animator animator;
+
     void Awake()
     {
         moveInp = new MovementInput();
+
+        animator = this.GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -40,10 +44,14 @@ public class Jump : MonoBehaviour
         if(keyboard == null){
             return;
         }
+        // if(Input.GetKeyDown(KeyCode.Space)){
+        //     animator.SetInteger("state", 3);
+        // }
+        // print(animator.GetInteger());
         if(isGrounded && moveInp.Player_Move.Jump.triggered){
             _rbody.AddForce(Vector3.up * _jumpHeight, ForceMode.Impulse);
+            // animator.SetInteger("state", 3);
         }
-
     }
 
     private void FixedUpdate() {
