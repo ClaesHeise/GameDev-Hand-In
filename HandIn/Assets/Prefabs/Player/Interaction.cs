@@ -97,8 +97,12 @@ public class Interaction : MonoBehaviour
             if(moveInp.Interaction.Drop.triggered){
                 InteractionQ();
             }
+            else{
             float heightDirection = moveInp.Interaction.Height.ReadValue<float>();
+            print(heightDirection);
             PickUp.transform.position += new Vector3(0,0.2f*heightDirection,0);
+            print(PickUp.transform.position);
+            }
             // else if(Input.GetKeyDown("u")){
             //     PickUp.transform.position += new Vector3(0,0.2f,0);
             // }
@@ -137,7 +141,6 @@ public class Interaction : MonoBehaviour
                 PickUp.GetComponent<Rigidbody>().isKinematic = true;
                 PickUp.GetComponent<BoxCollider>().isTrigger = true;
                 PickUp.transform.position = gameObject.transform.position + (gameObject.transform.forward + new Vector3(gameObject.transform.forward.x * 5, HitObject.GetComponent<Renderer>().bounds.size.y, gameObject.transform.forward.z * 5));
-                print(gameObject.transform.forward);
                 PickUp.transform.parent = gameObject.transform;
                 hasItem = true;
             }
@@ -185,10 +188,15 @@ public class Interaction : MonoBehaviour
 
     private void InteractionQ() {
         PickUp.GetComponent<BoxCollider>().isTrigger = false;
-            PickUp.GetComponent<Rigidbody>().isKinematic = false;
-            PickUp.transform.parent = null;
-            hasItem = false;
-            PickUp = null;
+        print("Hey1");
+        PickUp.GetComponent<Rigidbody>().isKinematic = false;
+        print("Hey2");
+        PickUp.transform.parent = null;
+        print("Hey3");
+        hasItem = false;
+        print("Hey4");
+        PickUp = null;
+        print("Hey5");
     }
 
         void OnEnable() {
