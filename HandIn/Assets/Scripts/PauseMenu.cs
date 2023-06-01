@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool Paused = false;
-    public GameObject Canvas;
+    public GameObject pauseMenuUI;
+    //public Player player;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -17,35 +19,48 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
             if (Paused)
             {
-                Play();
+                Resume();
             }
             else
             {
-                Stop();
+                Pause();
             }
         }
     }
 
-    void Stop()
+    void Pause()
     {
-        Canvas.SetActive(true);
-        Time.timeScale = 0f;
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f; // Freeze the game
         Paused = true;
     }
 
-    public void Play()
+    public void Resume()
     {
-        Canvas.SetActive(false);
-        Time.timeScale = 1f;
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f; // Unfreeze the game
         Paused = false;
     }
 
-    public void MainMenuButton()
+    public void LoadMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        Debug.Log("Saving game and Loading menu...");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        // Save the game
+        SaveSystem.SavePlayer(player);
+
+        Time.timeScale = 1f; // Unfreeze the game
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting game...");
+        Application.Quit();
     }
 }

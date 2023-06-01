@@ -83,21 +83,35 @@ public class MenuController : MonoBehaviour
 
     public void NewGameDialogYes() 
     {
+        Debug.Log("New Game");
+        PlayerPrefs.DeleteKey("playerX");
+        PlayerPrefs.DeleteKey("playerY");
+        PlayerPrefs.DeleteKey("playerZ");
         SceneManager.LoadScene(_newGameLevel);
     }
 
     public void LoadGameDialogYes()
     {
-        // do we have a file called SavedLevel?
-        if(PlayerPrefs.HasKey("SavedLevel")) 
-        {
-            levelToLoad = PlayerPrefs.GetString("SavedLevel");
-            SceneManager.LoadScene(levelToLoad);
-        } 
-        else 
-        {
-            noSavedGameDialog.SetActive(true);
-        }
+        
+        PlayerData data = SaveSystem.LoadPlayer();
+         // do we have a file called SavedLevel?
+
+            if (data == null)
+            {
+                noSavedGameDialog.SetActive(true);
+            }
+            else
+            {
+                // load the game with player data
+                //SceneManager.LoadScene(data.level);
+                Debug.Log("Loading game...!!!");
+                // set x, y, z for player in playerprefs
+                PlayerPrefs.SetFloat("playerX", data.position[0]);
+                PlayerPrefs.SetFloat("playerY", data.position[1]);
+                PlayerPrefs.SetFloat("playerZ", data.position[2]);
+                PlayerPrefs.Save();
+                SceneManager.LoadScene("SampleScene");
+            }
     }
 
     public void ExitButton()
