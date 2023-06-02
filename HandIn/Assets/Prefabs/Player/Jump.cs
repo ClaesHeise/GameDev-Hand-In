@@ -3,72 +3,95 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Jump : MonoBehaviour
 {
-    [SerializeField]
-    private float _jumpHeight;
-    [SerializeField]
-    private float _gravityScale;
-    private Rigidbody _rbody;
-    private Vector3 _jumpInput;
-    bool isGrounded;
+  [SerializeField]
+  private float jumpHeight;
 
-    private MovementInput moveInp;
+  [SerializeField]
+  private float gravityScale;
 
-    Animator animator;
+  [SerializeField]
+  private bool isGrounded;
 
-    void Awake()
+  [SerializeField]
+  private Vector3 boxSize;
+
+  [SerializeField]
+  public float maxDistance;
+
+  [SerializeField]
+  public LayerMask layerMask;
+
+  private Rigidbody rb;
+
+  private MovementInput moveInp;
+
+  private bool jump;
+
+  Animator animator;
+
+  void Awake()
+  {
+    moveInp = new MovementInput();
+    moveInp.Player_Move.Jump.performed += _ => jump = true;
+
+    // animator = this.GetComponent<Animator>();
+  }
+
+  // Start is called before the first frame update
+  void Start()
+  {
+    isGrounded = true;
+    rb = GetComponent<Rigidbody>();
+    if (rb is null)
     {
-        moveInp = new MovementInput();
-
-        animator = this.GetComponent<Animator>();
+      Debug.Log("Rigidbody is NULL!");
     }
+  }
 
-    // Start is called before the first frame update
-    void Start()
+  // Update is called once per frame
+  void Update()
+  {
+    isGrounded = GroundCheck();
+  }
+
+  private void FixedUpdate()
+  {
+    // add gravity always
+    if (!isGrounded)
     {
-        isGrounded = false;
-        _rbody = GetComponent<Rigidbody>();
-        if(_rbody is null){
-            Debug.Log("Rigidbody is NULL!");
-        }
+
+      rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    if (isGrounded && jump)
     {
-        if(isGrounded == false){
-            _rbody.AddForce(Physics.gravity * (_gravityScale - 1) * _rbody.mass);
-        }
-        var keyboard = Keyboard.current;
-        if(keyboard == null){
-            return;
-        }
-        // if(Input.GetKeyDown(KeyCode.Space)){
-        //     animator.SetInteger("state", 3);
-        // }
-        // print(animator.GetInteger());
-        if(isGrounded && moveInp.Player_Move.Jump.triggered){
-            _rbody.AddForce(Vector3.up * _jumpHeight, ForceMode.Impulse);
-            // animator.SetInteger("state", 3);
-        }
+      jump = false;
+      float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics.gravity.y * gravityScale));
+      // animator.SetInteger("state", 3);
+      rb.AddForce(Vector3.up * jumpForce * rb.mass, ForceMode.Impulse);
     }
+  }
 
-    private void FixedUpdate() {
-        isGrounded = false;    
-    }
+  // void OnDrawGizmos()
+  // {
+  //   Gizmos.color = Color.red;
+  //   Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
+  // }
+  bool GroundCheck()
+  {
+    return Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask);
+  }
+  void OnEnable()
+  {
+    moveInp.Player_Move.Enable();
+  }
 
-    void OnEnable() {
-        moveInp.Player_Move.Enable();
-    }
-
-    void OnDisable() {
-        moveInp.Player_Move.Disable();
-    }
-
-    private void OnCollisionStay(Collision other) {
-        if(other.contacts[0].normal.y >= 0.6f){
-        isGrounded = true;
-    }
-    }
+  void OnDisable()
+  {
+    moveInp.Player_Move.Disable();
+  }
 }
