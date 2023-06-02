@@ -62,7 +62,6 @@ public class Jump : MonoBehaviour
     // add gravity always
     if (!isGrounded)
     {
-
       rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
     }
 

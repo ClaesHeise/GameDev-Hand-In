@@ -32,9 +32,11 @@ public class Movement : MonoBehaviour
     rb = GetComponent<Rigidbody>();
     if (rb is null)
     {
+
       Debug.Log("Rigidbody is NULL!");
     }
   }
+
 
   // Update is called once per frame
   void Update()
@@ -43,14 +45,17 @@ public class Movement : MonoBehaviour
     if (keyboard == null)
     {
       return;
+
     }
     RotatePlayer();
   }
+
 
   private void FixedUpdate()
   {
     Move();
   }
+
 
   // private void AnimatePlayer(){
 
