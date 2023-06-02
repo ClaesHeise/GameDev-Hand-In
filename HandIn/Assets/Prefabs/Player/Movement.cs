@@ -8,18 +8,18 @@ public class Movement : MonoBehaviour
 {
 
   [SerializeField]
-  private float speed;
+  public float speed;
   [SerializeField]
   private float rotateSpeed;
 
   [SerializeField]
-  public float speed;
-  [SerializeField]
-  private float _rotateSpeed;
+  [Range(0, 100)]
+  private float inAirPenalty;
 
   private Rigidbody rb;
   private Vector3 moveInput;
 
+  private Jump jump;
   private MovementInput moveInp;
   private bool keyIsHeld;
   private bool animationIsPlaying;
@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
 
 
     // animator = this.GetComponent<Animator>();
-
+    jump = GetComponent<Jump>();
     rb = GetComponent<Rigidbody>();
     if (rb is null)
     {
@@ -92,7 +92,7 @@ public class Movement : MonoBehaviour
     {
       // animator.SetInteger("state", 0);
     }
-    rb.AddForce(movement * speed);
+    rb.AddForce(movement * speed * (jump.isGrounded ? 1 : inAirPenalty / 100));
   }
 
   void OnEnable()
