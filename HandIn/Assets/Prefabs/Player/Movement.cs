@@ -6,10 +6,16 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour
 {
+
   [SerializeField]
   private float speed;
   [SerializeField]
   private float rotateSpeed;
+
+  [SerializeField]
+  public float speed;
+  [SerializeField]
+  private float _rotateSpeed;
 
   private Rigidbody rb;
   private Vector3 moveInput;
@@ -17,6 +23,7 @@ public class Movement : MonoBehaviour
   private MovementInput moveInp;
   private bool keyIsHeld;
   private bool animationIsPlaying;
+
 
   Animator animator;
   // Start is called before the first frame update
@@ -27,12 +34,12 @@ public class Movement : MonoBehaviour
 
     // moveInp.Player_Move.triggered += _ => AnimatePlayer();
 
+
     // animator = this.GetComponent<Animator>();
 
     rb = GetComponent<Rigidbody>();
     if (rb is null)
     {
-
       Debug.Log("Rigidbody is NULL!");
     }
   }
@@ -45,7 +52,6 @@ public class Movement : MonoBehaviour
     if (keyboard == null)
     {
       return;
-
     }
     RotatePlayer();
   }
