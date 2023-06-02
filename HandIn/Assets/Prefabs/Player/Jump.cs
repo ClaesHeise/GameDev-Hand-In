@@ -13,22 +13,18 @@ public class Jump : MonoBehaviour
   private float gravityScale;
 
   [SerializeField]
-  private bool isGrounded;
+  public bool isGrounded { get; private set; } = true;
 
   [SerializeField]
-  private Vector3 boxSize;
-
-  [SerializeField]
-  public float maxDistance;
-
-  [SerializeField]
-  public LayerMask layerMask;
+  public float groundSphereRadius;
 
   private Rigidbody rb;
 
   private MovementInput moveInp;
 
   private bool jump;
+
+
 
   Animator animator;
 
@@ -43,7 +39,6 @@ public class Jump : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    isGrounded = true;
     rb = GetComponent<Rigidbody>();
     if (rb is null)
     {
@@ -60,29 +55,24 @@ public class Jump : MonoBehaviour
   private void FixedUpdate()
   {
     // add gravity always
-    if (!isGrounded)
-    {
-      rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
-    }
-
-
+    rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
     if (isGrounded && jump)
     {
-      jump = false;
       float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics.gravity.y * gravityScale));
       // animator.SetInteger("state", 3);
       rb.AddForce(Vector3.up * jumpForce * rb.mass, ForceMode.Impulse);
     }
+    jump = false;
   }
 
-  // void OnDrawGizmos()
-  // {
-  //   Gizmos.color = Color.red;
-  //   Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
-  // }
+  void OnDrawGizmos()
+  {
+    Gizmos.color = Color.red;
+    Gizmos.DrawSphere(transform.position, groundSphereRadius);
+  }
   bool GroundCheck()
   {
-    return Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask);
+    return Physics.OverlapSphere(transform.position, groundSphereRadius).Length > 1;
   }
   void OnEnable()
   {
