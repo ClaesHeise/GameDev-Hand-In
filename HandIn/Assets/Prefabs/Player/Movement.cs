@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [SerializeField]
-    private float _speed;
+    public float speed;
     [SerializeField]
     private float _rotateSpeed;
 
@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     private bool keyIsHeld;
     private bool animationIsPlaying;
 
-    Animator animator;
+    // Animator animator;
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour
 
         // moveInp.Player_Move.triggered += _ => AnimatePlayer();
         
-        animator = this.GetComponent<Animator>();
+        // animator = this.GetComponent<Animator>();
 
         _rbody = GetComponent<Rigidbody>();
         if(_rbody is null){
@@ -48,22 +48,22 @@ public class Movement : MonoBehaviour
         // }
         // if(keyIsHeld){
         //     if(!animationIsPlaying){
-                if(Input.GetKeyDown(KeyCode.Space)){
-                    animator.SetInteger("state", 3);
-                }
-                else if(Input.GetKey(KeyCode.W)) {
-                    animator.SetInteger("state", 1);
-                }
-                else if(Input.GetKey(KeyCode.S)){
-                    animator.SetInteger("state", 2);
-                }
-        //         animationIsPlaying = true;
-        //     }
+        //         if(Input.GetKeyDown(KeyCode.Space)){
+        //             animator.SetInteger("state", 3);
+        //         }
+        //         else if(Input.GetKey(KeyCode.W)) {
+        //             animator.SetInteger("state", 1);
+        //         }
+        //         else if(Input.GetKey(KeyCode.S)){
+        //             animator.SetInteger("state", 2);
+        //         }
+        // //         animationIsPlaying = true;
+        // //     }
+        // // }
+        // else {
+        //     animator.SetInteger("state", 0);
+        //     // animationIsPlaying = false;
         // }
-        else {
-            animator.SetInteger("state", 0);
-            // animationIsPlaying = false;
-        }
         // if(Input.GetKey(KeyCode.W)){
         //     animator.SetInteger("state", 1);
         // }
@@ -90,7 +90,7 @@ public class Movement : MonoBehaviour
     private void Run(){
         // animator.SetInteger("state", 1);
         _moveInput = moveInp.Player_Move.Movement.ReadValue<Vector3>();
-        _rbody.velocity = transform.forward * _moveInput.x * _speed;
+        _rbody.velocity = transform.forward * _moveInput.x * speed;
         // animator.SetInteger("state", 0);
     }
 
