@@ -77,10 +77,20 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Quitting game...");
         savingAndQuittingPopUp.SetActive(true);
         waiter();
+
+        Debug.Log("Saving game and Loading menu...");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        // Save the player data
+        SaveSystem.SavePlayer(player);
+
+        // Save the ship data
+        SaveSystem.SaveShip(ship);
+
         Application.Quit();
     }
 
-    IEnumerator waiter()
+    public IEnumerator waiter()
     {
         yield return new WaitForSecondsRealtime(4);
     }
