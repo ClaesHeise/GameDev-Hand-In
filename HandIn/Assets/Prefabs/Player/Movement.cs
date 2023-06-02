@@ -44,9 +44,7 @@ public class Movement : MonoBehaviour
     {
       return;
     }
-
     RotatePlayer();
-
   }
 
   private void FixedUpdate()
