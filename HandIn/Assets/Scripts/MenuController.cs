@@ -8,39 +8,61 @@ using TMPro;
 public class MenuController : MonoBehaviour
 {
     [Header("Volume Setting")]
-    [SerializeField] private TMP_Text volumeTextValue = null;
-    [SerializeField] private Slider volumeSlider = null;
-    [SerializeField] private float defaultVolume = 0.5f;
+    [SerializeField]
+    private TMP_Text volumeTextValue = null;
+
+    [SerializeField]
+    private Slider volumeSlider = null;
+
+    [SerializeField]
+    private float defaultVolume = 0.5f;
 
     [Header("Gameplay Settings")]
-    [SerializeField] private TMP_Text controllerSensTextValue = null;
-    [SerializeField] private Slider controllerSensSlider = null;
-    [SerializeField] private int defaultSens = 5;
+    [SerializeField]
+    private TMP_Text controllerSensTextValue = null;
+
+    [SerializeField]
+    private Slider controllerSensSlider = null;
+
+    [SerializeField]
+    private int defaultSens = 5;
     public int mainControllerSens = 5;
 
     [Header("Toggle Settings")]
-    [SerializeField] private Toggle invertYToggle = null;
+    [SerializeField]
+    private Toggle invertYToggle = null;
 
     [Header("Graphics Settings")]
-    [SerializeField] private Slider brightnessSlider = null;
-    [SerializeField] private TMP_Text brightnessTextValue = null;
-    [SerializeField] private float defaultBrightnessValue = 1f;
+    [SerializeField]
+    private Slider brightnessSlider = null;
+
+    [SerializeField]
+    private TMP_Text brightnessTextValue = null;
+
+    [SerializeField]
+    private float defaultBrightnessValue = 1f;
 
     [Space(10)]
-    [SerializeField] private TMP_Dropdown qualityDropdown;
-    [SerializeField] private Toggle fullScreenToggle;
+    [SerializeField]
+    private TMP_Dropdown qualityDropdown;
+
+    [SerializeField]
+    private Toggle fullScreenToggle;
 
     private int _qualityLevel;
     private bool _isFullScreen;
     private float _brightnessLevel;
 
     [Header("Confirmation")]
-    [SerializeField] private GameObject confirmationPrompt = null;
+    [SerializeField]
+    private GameObject confirmationPrompt = null;
 
     [Header("Levels To Load")]
     public string _newGameLevel;
     private string levelToLoad;
-    [SerializeField] private GameObject noSavedGameDialog = null;
+
+    [SerializeField]
+    private GameObject noSavedGameDialog = null;
 
     [Header("Resolutions Dropdowns")]
     public TMP_Dropdown resolutionDropdown;
@@ -57,11 +79,11 @@ public class MenuController : MonoBehaviour
 
         int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
-        {   
+        {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
             // Check to see if the resolution we found is equal to our screen width and height
-            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
             {
                 // Set to our current res
                 currentResolutionIndex = i;
@@ -70,8 +92,7 @@ public class MenuController : MonoBehaviour
 
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue(); 
-
+        resolutionDropdown.RefreshShownValue();
     }
 
     public void SetResolution(int resolutionIndex)
@@ -80,38 +101,48 @@ public class MenuController : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-
-    public void NewGameDialogYes() 
+    public void NewGameDialogYes()
     {
         Debug.Log("New Game");
+        // Delete player positions from playerprefs
         PlayerPrefs.DeleteKey("playerX");
         PlayerPrefs.DeleteKey("playerY");
         PlayerPrefs.DeleteKey("playerZ");
+
+        // Delete ship positions from playerprefs
+        PlayerPrefs.DeleteKey("shipX");
+        PlayerPrefs.DeleteKey("shipY");
+        PlayerPrefs.DeleteKey("shipZ");
+
         SceneManager.LoadScene(_newGameLevel);
     }
 
     public void LoadGameDialogYes()
     {
-        
-        PlayerData data = SaveSystem.LoadPlayer();
-         // do we have a file called SavedLevel?
+        PlayerData playerData = SaveSystem.LoadPlayer();
+        ShipData shipData = SaveSystem.LoadShip();
 
-            if (data == null)
-            {
-                noSavedGameDialog.SetActive(true);
-            }
-            else
-            {
-                // load the game with player data
-                //SceneManager.LoadScene(data.level);
-                Debug.Log("Loading game...!!!");
-                // set x, y, z for player in playerprefs
-                PlayerPrefs.SetFloat("playerX", data.position[0]);
-                PlayerPrefs.SetFloat("playerY", data.position[1]);
-                PlayerPrefs.SetFloat("playerZ", data.position[2]);
-                PlayerPrefs.Save();
-                SceneManager.LoadScene("SampleScene");
-            }
+        if (playerData == null || shipData == null)
+        {
+            noSavedGameDialog.SetActive(true);
+        }
+        else
+        {
+            // load the game
+            Debug.Log("Loading game...!!!");
+            // set x, y, z for player in playerprefs
+            PlayerPrefs.SetFloat("playerX", playerData.position[0]);
+            PlayerPrefs.SetFloat("playerY", playerData.position[1]);
+            PlayerPrefs.SetFloat("playerZ", playerData.position[2]);
+
+            // set x, y, z for ship in playerprefs
+            PlayerPrefs.SetFloat("shipX", shipData.position[0]);
+            PlayerPrefs.SetFloat("shipY", shipData.position[1]);
+            PlayerPrefs.SetFloat("shipZ", shipData.position[2]);
+
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 
     public void ExitButton()
@@ -140,12 +171,12 @@ public class MenuController : MonoBehaviour
 
     public void GameplayApply()
     {
-        if(invertYToggle.isOn)
+        if (invertYToggle.isOn)
         {
             PlayerPrefs.SetInt("masterInvertY", 1);
             // do the inverting here
         }
-        else 
+        else
         {
             PlayerPrefs.SetInt("masterInvertY", 0);
             // ! do the inverting here
@@ -159,7 +190,7 @@ public class MenuController : MonoBehaviour
     {
         _brightnessLevel = brightness;
         brightnessTextValue.text = brightness.ToString("0.0");
-    }    
+    }
 
     public void SetFullScreen(bool isFullScreen)
     {
@@ -187,7 +218,7 @@ public class MenuController : MonoBehaviour
 
     public void ResetButton(string MenuType)
     {
-        if(MenuType == "Graphics")
+        if (MenuType == "Graphics")
         {
             // Reset the brightness (here we have to add the actual functionality, which isn't implemented yet)
             brightnessSlider.value = defaultBrightnessValue;
@@ -200,12 +231,16 @@ public class MenuController : MonoBehaviour
             Screen.fullScreen = false;
 
             Resolution currentResolution = Screen.currentResolution;
-            Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen);
+            Screen.SetResolution(
+                currentResolution.width,
+                currentResolution.height,
+                Screen.fullScreen
+            );
             resolutionDropdown.value = resolutions.Length; // last resolution in the list
             GraphicsApply();
         }
 
-        if(MenuType == "Audio") 
+        if (MenuType == "Audio")
         {
             AudioListener.volume = defaultVolume;
             volumeSlider.value = defaultVolume;
@@ -213,7 +248,7 @@ public class MenuController : MonoBehaviour
             VolumeApply();
         }
 
-        if(MenuType == "Gameplay")
+        if (MenuType == "Gameplay")
         {
             controllerSensTextValue.text = defaultSens.ToString("0");
             controllerSensSlider.value = defaultSens;
@@ -223,7 +258,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public IEnumerator ConfirmationBox() 
+    public IEnumerator ConfirmationBox()
     {
         confirmationPrompt.SetActive(true);
         yield return new WaitForSeconds(2);

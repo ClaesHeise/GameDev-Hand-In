@@ -68,28 +68,6 @@ public partial class @MovementInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""2e4c9562-d460-4c6c-8128-f261e18bacbe"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""ed1f27e0-eab2-4d62-b3eb-9f40dca4ec92"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""forward"",
                     ""id"": ""ba462662-a45e-45d7-a17f-f06c717ab38b"",
                     ""path"": ""<Keyboard>/w"",

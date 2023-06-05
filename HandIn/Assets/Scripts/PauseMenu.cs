@@ -7,9 +7,13 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool Paused = false;
     public GameObject pauseMenuUI;
+    public GameObject savingAndExitingPopUp;
+    public GameObject savingAndQuittingPopUp;
 
     //public Player player;
     public GameObject player;
+
+    public GameObject ship;
 
     // Start is called before the first frame update
     void Start()
@@ -49,19 +53,45 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+        // Display saving and exiting pop up for a couple seconds then continue
+        pauseMenuUI.SetActive(false);
+        waiter();
+        savingAndExitingPopUp.SetActive(true);
+
         Debug.Log("Saving game and Loading menu...");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
-        // Save the game
+        // Save the player data
         SaveSystem.SavePlayer(player);
 
+        // Save the ship data
+        SaveSystem.SaveShip(ship);
+
         Time.timeScale = 1f; // Unfreeze the game
+        Paused = false;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame()
     {
         Debug.Log("Quitting game...");
+        savingAndQuittingPopUp.SetActive(true);
+        waiter();
+
+        Debug.Log("Saving game and Loading menu...");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        // Save the player data
+        SaveSystem.SavePlayer(player);
+
+        // Save the ship data
+        SaveSystem.SaveShip(ship);
+
         Application.Quit();
+    }
+
+    public IEnumerator waiter()
+    {
+        yield return new WaitForSecondsRealtime(4);
     }
 }
