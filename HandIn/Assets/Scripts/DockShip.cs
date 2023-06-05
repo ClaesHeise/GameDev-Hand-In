@@ -6,6 +6,11 @@ using UnityEngine.InputSystem;
 
 public class DockShip : MonoBehaviour
 {
+
+  
+  [SerializeField]
+  private Area area;
+
   [SerializeField]
   private Transform dockPosition;
 
@@ -28,7 +33,7 @@ public class DockShip : MonoBehaviour
       var ship = other.gameObject.GetComponent<Ship>();
       ship.dockPosition = dockPosition;
       ship.playerDropOff = playerDropOff;
-
+      ship.area = area;
     }
   }
 
@@ -39,6 +44,7 @@ public class DockShip : MonoBehaviour
       var ship = other.gameObject.GetComponent<Ship>();
       ship.dockPosition = dockPosition;
       ship.playerDropOff = playerDropOff;
+      ship.area = area;
     }
   }
 
