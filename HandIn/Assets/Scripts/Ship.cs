@@ -96,20 +96,18 @@ public class Ship : MonoBehaviour
     controls.Ship_Move.Disable();
     controls.Player_Move.Enable();
     Player.transform.parent = null;
-    var playerHeight = Player.GetComponent<CapsuleCollider>().height;
-    Player.transform.position = new Vector3(playerDropOff.position.x, playerDropOff.position.y + playerHeight, playerDropOff.position.z);
+    Player.transform.position = playerDropOff.position;
     Player.transform.rotation = playerDropOff.rotation;
     Player.SetActive(true);
-    Camera.main.GetComponent<SwitchCameraTarget>().SwitchTarget(Player, new Vector3(11, 4, -6));
+    Camera.main.GetComponent<SwitchCameraTarget>().SwitchTarget(Player, new Vector3(0, 4, -6), OffsetType.Local);
     Camera.main.GetComponent<OrbitCamera>().enabled = false;
-    Camera.main.transform.rotation = new Quaternion(10, 0, 0, 0);
     controls.Interaction.Use.performed += ctx => { };
   }
 
   public void Undock()
   {
     Player.transform.parent = transform;
-    Camera.main.GetComponent<SwitchCameraTarget>().SwitchTarget(gameObject, new Vector3(30, 40, 0));
+    Camera.main.GetComponent<SwitchCameraTarget>().SwitchTarget(gameObject, new Vector3(30, 40, 0), OffsetType.World);
     Camera.main.GetComponent<OrbitCamera>().enabled = true;
     isDocked = false;
     shipMovement.enabled = true;
