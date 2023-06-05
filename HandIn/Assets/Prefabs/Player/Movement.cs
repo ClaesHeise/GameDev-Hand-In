@@ -80,18 +80,18 @@ public class Movement : MonoBehaviour
   {
     // Movement
     var movement = transform.TransformDirection(moveInput.normalized);
-    if (movement.x > 0 || movement.z > 0)
-    {
-      // animator.SetInteger("state", 1);
-    }
-    else if (movement.x < 0 || movement.z < 0)
-    {
-      // animator.SetInteger("state", 2);
-    }
-    else
-    {
-      // animator.SetInteger("state", 0);
-    }
+    // if (movement.x > 0 || movement.z > 0)
+    // {
+    //   // animator.SetInteger("state", 1);
+    // }
+    // else if (movement.x < 0 || movement.z < 0)
+    // {
+    //   // animator.SetInteger("state", 2);
+    // }
+    // else
+    // {
+    //   // animator.SetInteger("state", 0);
+    // }
     rb.AddForce(movement * speed * (jump.isGrounded ? 1 : inAirPenalty / 100));
   }
 
