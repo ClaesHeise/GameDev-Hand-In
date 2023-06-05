@@ -100,8 +100,9 @@ public class Ship : MonoBehaviour
     Player.transform.position = new Vector3(playerDropOff.position.x, playerDropOff.position.y + playerHeight, playerDropOff.position.z);
     Player.transform.rotation = playerDropOff.rotation;
     Player.SetActive(true);
-    Camera.main.GetComponent<SwitchCameraTarget>().SwitchTarget(Player, Vector3.up * playerHeight / 2);
+    Camera.main.GetComponent<SwitchCameraTarget>().SwitchTarget(Player, new Vector3(11, 4, -6));
     Camera.main.GetComponent<OrbitCamera>().enabled = false;
+    Camera.main.transform.rotation = new Quaternion(10, 0, 0, 0);
     controls.Interaction.Use.performed += ctx => { };
   }
 
