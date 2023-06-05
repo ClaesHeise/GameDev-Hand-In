@@ -170,12 +170,12 @@ public class Interaction : MonoBehaviour
             if (gameObject.transform.localScale == normalScale)
             {
                 gameObject.transform.localScale = smallScale;
-                movement.speed *= 0.5f;
+                movement.speed = movement.speed / 2;
             }
             else
             {
                 gameObject.transform.localScale = normalScale;
-                movement.speed *= 2.0f;
+                movement.speed = movement.speed * 2;
             }
         }
         else if (HitObject.tag == "Chest")
@@ -210,6 +210,7 @@ public class Interaction : MonoBehaviour
         }
         else if (HitObject.tag == "Ship")
         {
+            print(HitObject.tag);
             HitObject.GetComponent<Ship>().Undock();
         }
     }

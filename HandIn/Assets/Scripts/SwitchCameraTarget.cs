@@ -11,12 +11,7 @@ public class SwitchCameraTarget : MonoBehaviour
 
   }
 
-  public void SwitchTarget(GameObject target, Vector3 offset)
-  {
-    StartCoroutine(Switch(target, offset));
-  }
-
-  IEnumerator Switch(GameObject target, Vector3 offset)
+ public void SwitchTarget(GameObject target, Vector3 offset)
   {
     if (target.CompareTag("Player"))
     {
@@ -26,9 +21,14 @@ public class SwitchCameraTarget : MonoBehaviour
     {
       transform.parent = null;
     }
-    Vector3 targetPos = target.transform.position + offset;
+    Vector3 worldOffset  = target.transform.localToWorldMatrix.MultiplyPoint(offset);
+    Vector3 targetPos = worldOffset;
+    StartCoroutine(Switch(targetPos, target.transform.rotation));
+  }
+
+  IEnumerator Switch(Vector3 targetPos, Quaternion targetRot)
+  {
     Vector3 currentPos = transform.position;
-    Quaternion targetRot = target.transform.rotation;
     Quaternion currentRot = transform.rotation;
     float t = 0;
     while (t < 1)
