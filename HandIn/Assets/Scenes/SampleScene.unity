@@ -6124,6 +6124,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Island - Winter
       objectReference: {fileID: 0}
+    - target: {fileID: 6256271050800082300, guid: 0a660ddef75a5a840bfa961fc39e1715, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7286145747776237221, guid: 0a660ddef75a5a840bfa961fc39e1715, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -16572,6 +16576,10 @@ PrefabInstance:
     - target: {fileID: 7508035244903994366, guid: 81e0b127f4e7fa14da1e3fd82477e869, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508035244903994366, guid: 81e0b127f4e7fa14da1e3fd82477e869, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8392354484585096258, guid: 81e0b127f4e7fa14da1e3fd82477e869, type: 3}
       propertyPath: m_LocalPosition.x
