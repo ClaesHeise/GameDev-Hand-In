@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4172,7 +4172,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &583228791
 PrefabInstance:
@@ -5451,7 +5451,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &724255403
 PrefabInstance:
@@ -5779,7 +5779,7 @@ RectTransform:
   m_Children:
   - {fileID: 1940705263}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6123,6 +6123,10 @@ PrefabInstance:
     - target: {fileID: 6256271050800082300, guid: 0a660ddef75a5a840bfa961fc39e1715, type: 3}
       propertyPath: m_Name
       value: Island - Winter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256271050800082300, guid: 0a660ddef75a5a840bfa961fc39e1715, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7286145747776237221, guid: 0a660ddef75a5a840bfa961fc39e1715, type: 3}
       propertyPath: m_RootOrder
@@ -9376,7 +9380,7 @@ RectTransform:
   - {fileID: 251615140}
   - {fileID: 2109105217}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9399,7 +9403,7 @@ MonoBehaviour:
   savingAndExitingPopUp: {fileID: 727231004}
   savingAndQuittingPopUp: {fileID: 2109105216}
   player: {fileID: 1145075481}
-  ship: {fileID: 0}
+  ship: {fileID: 2101695296}
 --- !u!1 &1428969236 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7327281100509943666, guid: 6c41c03323c0e3848aaeb4e52383c958, type: 3}
@@ -10074,7 +10078,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10687,7 +10691,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1588501544
 MonoBehaviour:
@@ -16573,6 +16577,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7508035244903994366, guid: 81e0b127f4e7fa14da1e3fd82477e869, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8392354484585096258, guid: 81e0b127f4e7fa14da1e3fd82477e869, type: 3}
       propertyPath: m_LocalPosition.x
       value: -45.50995
@@ -19013,6 +19021,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764ac3d453b8da24d91a0894ffdc6655, type: 3}
+--- !u!1 &2101695296 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6989164942630659338, guid: a4573581eb7494d51bcfcca0f2c3c2f1, type: 3}
+  m_PrefabInstance: {fileID: 6989164943768464670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2109105216
 GameObject:
   m_ObjectHideFlags: 0
@@ -19644,7 +19657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6989164942630659332, guid: a4573581eb7494d51bcfcca0f2c3c2f1, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 6989164942630659332, guid: a4573581eb7494d51bcfcca0f2c3c2f1, type: 3}
       propertyPath: m_LocalPosition.x
