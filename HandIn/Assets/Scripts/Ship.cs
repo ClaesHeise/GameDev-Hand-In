@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class Ship : MonoBehaviour
 {
+  public Area area;
+
   [SerializeField]
   private AudioSource dockSound;
 
@@ -95,6 +97,7 @@ public class Ship : MonoBehaviour
     shipMovement.enabled = false;
     controls.Ship_Move.Disable();
     controls.Player_Move.Enable();
+    Player.GetComponent<WaterTouch>().area = area;
     Player.transform.parent = null;
     Player.transform.position = playerDropOff.position;
     Player.transform.rotation = playerDropOff.rotation;

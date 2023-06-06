@@ -170,12 +170,12 @@ public class Interaction : MonoBehaviour
             if (gameObject.transform.localScale == normalScale)
             {
                 gameObject.transform.localScale = smallScale;
-                movement.speed = movement.speed / 2;
+                movement.speed = movement.speed / 1.5f;
             }
             else
             {
                 gameObject.transform.localScale = normalScale;
-                movement.speed = movement.speed * 2;
+                movement.speed = movement.speed * 1.5f;
             }
         }
         else if (HitObject.tag == "Chest")
@@ -228,6 +228,10 @@ public class Interaction : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Plank"){
             textElement2.text = "e) Pick up";
+            HitObject = other.transform.gameObject;
+        }
+        else if(other.gameObject.tag == "Chest") {
+            textElement2.text = "e) Loot chest";
             HitObject = other.transform.gameObject;
         }    
     }
