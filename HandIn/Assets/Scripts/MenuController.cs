@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Audio;
 
 public class MenuController : MonoBehaviour
 {
@@ -67,6 +68,9 @@ public class MenuController : MonoBehaviour
     [Header("Resolutions Dropdowns")]
     public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
+
+    [SerializeField]
+    private AudioMixer audioMixer;
 
     private void Start()
     {
@@ -150,15 +154,17 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
-    public void SetVolume(float volume)
+    public void SetMasterVolume(float volume)
     {
-        AudioListener.volume = volume;
+        audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
+        //AudioListener.volume = volume;
         volumeTextValue.text = volume.ToString("0.0");
     }
 
     public void VolumeApply()
     {
-        PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
+        audioMixer.GetFloat("Master", out float volume);
+        PlayerPrefs.SetFloat("masterVolume", Mathf.Pow(10, volume / 20));
         // Show Prompt
         StartCoroutine(ConfirmationBox());
     }
