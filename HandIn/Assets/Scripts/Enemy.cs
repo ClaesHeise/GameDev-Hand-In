@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
   private GameObject player;
   private EnemyMovement movement;
   [SerializeField] private float targetRange = 10.0f;
-  [SerializeField] private float forgetScale = 2.0f;
+  [SerializeField] private float forgetRange = 20.0f;
   private bool isChasing = false;
 
   // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
   void Update()
   {
     float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-    if (distanceToPlayer < targetRange)
+    if (distanceToPlayer < targetRange || (isChasing && distanceToPlayer < forgetRange))
     {
       isChasing = true;
       movement.Chase(player.transform.position);
@@ -31,19 +31,5 @@ public class Enemy : MonoBehaviour
       movement.Wander(isChasing);
       isChasing = false;
     }
-  }
-
-  private bool shouldChase()
-  {
-    float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-    if (distanceToPlayer < targetRange)
-    {
-      isChasing = true;
-    }
-    else if (distanceToPlayer > targetRange * forgetScale)
-    {
-      isChasing = false;
-    }
-    return isChasing;
   }
 }
