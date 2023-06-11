@@ -5,73 +5,70 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-
-  Animator animator;
-
-  private NavMeshAgent m_navMeshAgent;
-
+  private Animator animator;
+  private NavMeshAgent agent;
+  [SerializeField] private float wanderRange = 20.0f;
+  [SerializeField] private float wanderSpeed;
   [SerializeField] private float chaseSpeed = 15.0f;
-  [SerializeField] private float m_wanderRange = 15.0f;
+  [SerializeField] private Vector3 targetPosition;
+  private Coroutine idleCoroutine;
 
-  [SerializeField] private Vector3 m_targetPosition;
-
-  private float initialSpeed;
-
-  private void Awake()
+  private void Start()
   {
-    m_navMeshAgent = GetComponent<NavMeshAgent>();
-    animator = this.GetComponent<Animator>();
-    m_targetPosition = GetRandomPosition();
-    initialSpeed = m_navMeshAgent.speed;
+    agent = GetComponent<NavMeshAgent>();
+    animator = GetComponent<Animator>();
+    targetPosition = GetRandomPosition();
+    wanderSpeed = agent.speed;
   }
 
-  public void MoveTo(Vector3 targetPosition) => m_navMeshAgent.SetDestination(targetPosition);
+  public void MoveTo(Vector3 targetPosition) => agent.SetDestination(targetPosition);
 
-  public void Wander()
+  public void Wander(bool lostPlayer)
   {
-    m_navMeshAgent.speed = initialSpeed;
-    if (m_navMeshAgent.isStopped)
+    if (agent.isStopped) return;
+
+    float distanceToTargetPosition = Vector3.Distance(transform.position, targetPosition);
+    if (distanceToTargetPosition <= GetStoppingDistance() || lostPlayer)
     {
       animator.Play("Idle");
+      idleCoroutine = StartCoroutine(Idle(Random.Range(1F, 4F)));
       return;
     }
 
-    float distanceToTargetPosition = Vector3.Distance(transform.position, m_targetPosition);
-    if (distanceToTargetPosition < GetStoppingDistance())
-    {
-      m_targetPosition = GetRandomPosition();
-      StartCoroutine(Idle(Random.Range(1F, 4F)));
-    }
-
     animator.Play("Walking");
-    MoveTo(m_targetPosition);
+    agent.speed = wanderSpeed;
+    MoveTo(targetPosition);
   }
 
   public void Chase(Vector3 targetPosition)
   {
-    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Running"))
+    if (agent.isStopped)
     {
-      animator.Play("Base Layer.Running");
+      StopCoroutine(idleCoroutine);
+      agent.isStopped = false;
     }
 
-    m_navMeshAgent.speed = chaseSpeed;
+    animator.Play("Running");
+    agent.speed = chaseSpeed;
     MoveTo(targetPosition);
   }
 
   private Vector3 GetRandomPosition()
   {
-    Vector3 randomPosition = Random.insideUnitSphere * (m_wanderRange * 1.25f) + transform.position;
+    Vector3 randomPosition = Random.insideUnitSphere * wanderRange + transform.position;
     NavMeshHit hit;
-    NavMesh.SamplePosition(randomPosition, out hit, (m_wanderRange * 1.25f), NavMesh.AllAreas);
+    NavMesh.SamplePosition(randomPosition, out hit, wanderRange, NavMesh.AllAreas);
     return hit.position;
   }
 
-  public float GetStoppingDistance() => m_navMeshAgent.stoppingDistance;
+  public float GetStoppingDistance() => agent.stoppingDistance;
 
   private IEnumerator Idle(float idleTime)
   {
-    m_navMeshAgent.isStopped = true;
+    agent.isStopped = true;
     yield return new WaitForSeconds(idleTime);
-    m_navMeshAgent.isStopped = false;
+
+    targetPosition = GetRandomPosition();
+    agent.isStopped = false;
   }
 }
