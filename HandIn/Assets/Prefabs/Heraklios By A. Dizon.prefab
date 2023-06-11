@@ -1172,8 +1172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0aaa974a40046d297428d25968a8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  argoRange: 10
-  forgetScale: 4
+  targetRange: 20
+  forgetRange: 50
 --- !u!114 &1082058128316673300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,9 +1186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66491622f93564c0985803ce7ce6d8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wanderRange: 20
+  wanderSpeed: 0
   chaseSpeed: 15
-  m_wanderRange: 15
-  m_targetPosition: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &8058941934371607847
 Rigidbody:
   m_ObjectHideFlags: 0
