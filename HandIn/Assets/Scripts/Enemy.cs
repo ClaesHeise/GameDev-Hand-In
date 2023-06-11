@@ -1,58 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-  [SerializeField] private float argoRange = 10.0f;
-  [SerializeField] private float forgetScale = 2.0f;
-  private EnemyMovement movement;
-
-  private NavMeshAgent navMeshAgent;
-
   private GameObject player;
+  private EnemyMovement movement;
+  [SerializeField] private float targetRange = 10.0f;
+  [SerializeField] private float forgetScale = 2.0f;
   private bool isChasing = false;
-
 
   // Start is called before the first frame update
   void Start()
   {
+    player = GameObject.FindGameObjectWithTag("Player");
     movement = GetComponent<EnemyMovement>();
-    navMeshAgent = GetComponent<NavMeshAgent>();
   }
 
   // Update is called once per frame
   void Update()
   {
-    if (player == null)
+    float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+    if (distanceToPlayer < targetRange)
     {
-      player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    shouldChase();
-
-    if (isChasing)
-    {
+      isChasing = true;
       movement.Chase(player.transform.position);
     }
     else
     {
-      movement.Wander();
+      movement.Wander(isChasing);
+      isChasing = false;
     }
-
   }
 
-  private void shouldChase()
+  private bool shouldChase()
   {
     float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-    if (distanceToPlayer < argoRange)
+    if (distanceToPlayer < targetRange)
     {
       isChasing = true;
     }
-    else if (distanceToPlayer > argoRange * forgetScale)
+    else if (distanceToPlayer > targetRange * forgetScale)
     {
       isChasing = false;
     }
+    return isChasing;
   }
 }
